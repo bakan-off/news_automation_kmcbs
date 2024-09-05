@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Отправка новости</title>
+</head>
+<body>
+    <h1>Отправка новости</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    {% if session['logged_in'] %}
+      <form action="/submit_news" method="post" enctype="multipart/form-data">
+          <label for="title">Название новости:</label>
+          <input type="text" id="title" name="title" required><br>
+
+          <label for="age_rating">Возрастной ценз:</label>
+          <input type="text" id="age_rating" name="age_rating" required><br>
+
+          <label for="description">Описание:</label><br>
+          <textarea id="description" name="description" rows="5" required></textarea><br>
+
+          <label for="author">Автор или библиотека:</label>
+          <input type="text" id="author" name="author" required><br>
+
+          <label for="hashtags">Хештеги:</label>
+          <input type="text" id="hashtags" name="hashtags"><br>
+
+          <label for="file-upload" class="custom-file-upload"></label>
+          <input id="file-upload" type="file" name="files" multiple style="display: none;" onchange="updateFileList();"/>
+          <button type="button" class="upload-button" onclick="document.getElementById('file-upload').click();">Выбрать файлы</button><br>
+          <ul id="file-list"></ul>
+
+          <button type="submit">Отправить</button>
+      </form>
+      <a href="/logout">Выйти</a>
+    {% else %}
+      <h2>Авторизация</h2>
+      <form action="/login" method="post">
+          <label for="user_cod">Логин:</label>
+          <input type="text" id="user_cod" name="user_cod" required><br>
+
+          <label for="password_cod">Пароль:</label>
+          <input type="password" id="password_cod" name="password_cod" required><br>
+
+          <button type="submit">Войти</button>
+      </form>
+    {% endif %}
+
+    <script>
+    function updateFileList() {
+        const input = document.getElementById('file-upload');
+        const fileList = document.getElementById('file-list');
+        fileList.innerHTML = ''; // Очистить предыдущий список файлов
+
+        for (let i = 0; i < input.files.length; i++) {
+            const li = document.createElement('li');
+            li.textContent = input.files[i].name; // Отобразить имя файла
+            fileList.appendChild(li);
+        }
+    }
+    </script>
+</body>
+</html>

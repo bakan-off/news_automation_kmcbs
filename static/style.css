@@ -1,0 +1,14 @@
+
+
+.upload-button {
+    background-color: #4CAF50; /* Зеленый цвет */
+    color: white; /* Белый текст */
+    padding: 10px 20px; /* Отступы */
+    border: none; /* Без границы */
+    border-radius: 5px; /* Закругленные углы */
+    cursor: pointer; /* Указатель при наведении */
+}
+
+.upload-button:hover {
+    background-color: #45a049; /* Темнее при наведении */
+}

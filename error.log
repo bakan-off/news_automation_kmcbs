@@ -1,0 +1,12 @@
+2024-09-05 21:49:54,564:ERROR:Ошибка при загрузке файла S379e4e2c3f03492d9b474adbf35bef84c.jpg_640x640.png: Request to https://webdav.cloud.mail.ru/05092024-214859/S379e4e2c3f03492d9b474adbf35bef84c.jpg_640x640.png failed with code 502 and message: b'<html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n<hr><center>nginx/1.20.2</center>\r\n</body>\r\n</html>\r\n'
+2024-09-05 21:50:01,335:INFO:127.0.0.1 - - [05/Sep/2024 21:50:01] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-05 21:50:01,340:INFO:127.0.0.1 - - [05/Sep/2024 21:50:01] "GET / HTTP/1.1" 200 -
+2024-09-05 21:50:01,379:INFO:127.0.0.1 - - [05/Sep/2024 21:50:01] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-05 21:54:27,299:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-05 21:54:27,299:INFO:[33mPress CTRL+C to quit[0m
+2024-09-05 21:54:32,190:INFO:127.0.0.1 - - [05/Sep/2024 21:54:32] "GET / HTTP/1.1" 200 -
+2024-09-05 21:54:32,254:INFO:127.0.0.1 - - [05/Sep/2024 21:54:32] "GET /static/style.css HTTP/1.1" 200 -
+2024-09-05 21:55:13,677:INFO:127.0.0.1 - - [05/Sep/2024 21:55:13] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-05 21:55:13,681:INFO:127.0.0.1 - - [05/Sep/2024 21:55:13] "GET / HTTP/1.1" 200 -
+2024-09-05 21:55:13,720:INFO:127.0.0.1 - - [05/Sep/2024 21:55:13] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
