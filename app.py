@@ -27,11 +27,9 @@ data = {
 }
 client = Client(data)
 
-
 @app.route('/')
 def index():
     return render_template('index.html')
-
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -44,7 +42,6 @@ def login():
     else:
         flash('Неверный логин или пароль')
         return redirect(url_for('index'))
-
 
 @app.route('/submit_news', methods=['POST'])
 def submit_news():
@@ -67,6 +64,7 @@ def submit_news():
 
     file_urls = []
     files = request.files.getlist('files')
+    print(f"Количество загруженных файлов: {len(files)}")  # Отладочный вывод
     for file in files:
         if file and file.content_length <= 1 * 1024 * 1024 * 1024:  # Проверка на размер <= 1 Гб
             # Обработка имени файла: замена пробелов на подчеркивания
@@ -76,6 +74,7 @@ def submit_news():
             try:
                 client.upload_sync(remote_path=f"{folder_name}/{safe_filename}", local_path=temp_file_path)
                 file_urls.append(f"https://webdav.cloud.mail.ru/{folder_name}/{safe_filename}")
+                logging.info(f"Файл {safe_filename} успешно загружен в {folder_name}.")
             except Exception as e:
                 logging.error(f"Ошибка при загрузке файла {safe_filename}: {e}")
             finally:
@@ -91,8 +90,8 @@ def submit_news():
     except Exception as e:
         logging.error(f"Ошибка при отправке письма: {e}")
 
+    flash('Новости успешно отправлены!')
     return redirect(url_for('index'))
-
 
 def send_email(title, description, author, age_rating, hashtags, file_urls, folder_name):
     # Настройки почты
@@ -133,12 +132,10 @@ def send_email(title, description, author, age_rating, hashtags, file_urls, fold
     except Exception as e:
         logging.error(f"Ошибка при отправке письма: {e}")
 
-
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
     return redirect(url_for('index'))
-
 
 if __name__ == '__main__':
     app.run(debug=True)

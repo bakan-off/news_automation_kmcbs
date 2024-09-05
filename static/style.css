@@ -1,5 +1,3 @@
-
-
 .upload-button {
     background-color: #4CAF50; /* Зеленый цвет */
     color: white; /* Белый текст */
@@ -11,4 +9,21 @@
 
 .upload-button:hover {
     background-color: #45a049; /* Темнее при наведении */
+}
+
+#filedrag {
+    border-radius: 7px;
+    border: 2px dashed #3DA8BA;
+    color: #555555;
+    cursor: default;
+    display: none; /* Скрыто по умолчанию */
+    margin: 1em 0;
+    padding: 1em;
+    text-align: center;
+    background: #f9f9f9;
+}
+
+#filedrag.hover {
+    border-style: solid;
+    box-shadow: 0 3px 4px #dbdbdb inset;
 }

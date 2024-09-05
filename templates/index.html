@@ -36,9 +36,11 @@
           <label for="hashtags">Хештеги:</label>
           <input type="text" id="hashtags" name="hashtags"><br>
 
-          <label for="file-upload" class="custom-file-upload"></label>
+          <label for="file-upload" class="custom-file-upload">Выберите файлы</label>
           <input id="file-upload" type="file" name="files" multiple style="display: none;" onchange="updateFileList();"/>
           <button type="button" class="upload-button" onclick="document.getElementById('file-upload').click();">Выбрать файлы</button><br>
+
+          <div id="filedrag">Или перетащите их сюда</div>
           <ul id="file-list"></ul>
 
           <button type="submit">Отправить</button>
@@ -58,16 +60,70 @@
     {% endif %}
 
     <script>
+    let filesArray = [];
+
+    function $id(id) {
+        return document.getElementById(id);
+    }
+
+    function Output(msg) {
+        const m = $id("messages");
+        m.innerHTML = msg + m.innerHTML;
+    }
+
+    if (window.File && window.FileList && window.FileReader) {
+        Init();
+    }
+
+    function Init() {
+        const fileselect = $id("file-upload");
+        const filedrag = $id("filedrag");
+
+        fileselect.addEventListener("change", FileSelectHandler, false);
+        filedrag.addEventListener("dragover", FileDragHover, false);
+        filedrag.addEventListener("dragleave", FileDragHover, false);
+        filedrag.addEventListener("drop", FileSelectHandler, false);
+        filedrag.style.display = "block";
+    }
+
+    function FileDragHover(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        e.target.className = (e.type === "dragover" ? "hover" : "");
+    }
+
+    function FileSelectHandler(e) {
+        FileDragHover(e);
+        const files = e.target.files || e.dataTransfer.files;
+        for (let i = 0; i < files.length; i++) {
+            AddFileToInput(files[i]);
+        }
+    }
+
+    function AddFileToInput(file) {
+        // Проверяем, есть ли файл уже в массиве
+        if (!filesArray.some(f => f.name === file.name)) {
+            filesArray.push(file); // Добавляем файл в массив
+        }
+
+        // Обновляем input.files
+        const dataTransfer = new DataTransfer();
+        filesArray.forEach(f => dataTransfer.items.add(f));
+        $id('file-upload').files = dataTransfer.files;
+
+        // Обновляем список файлов
+        updateFileList();
+    }
+
     function updateFileList() {
-        const input = document.getElementById('file-upload');
-        const fileList = document.getElementById('file-list');
+        const fileList = $id('file-list');
         fileList.innerHTML = ''; // Очистить предыдущий список файлов
 
-        for (let i = 0; i < input.files.length; i++) {
+        filesArray.forEach(file => {
             const li = document.createElement('li');
-            li.textContent = input.files[i].name; // Отобразить имя файла
+            li.textContent = file.name; // Отобразить имя файла
             fileList.appendChild(li);
-        }
+        });
     }
     </script>
 </body>
