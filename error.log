@@ -307,3 +307,126 @@
 2024-09-06 21:23:29,623:INFO:127.0.0.1 - - [06/Sep/2024 21:23:29] "GET / HTTP/1.1" 200 -
 2024-09-06 21:23:37,264:INFO:127.0.0.1 - - [06/Sep/2024 21:23:37] "[32mGET /logout HTTP/1.1[0m" 302 -
 2024-09-06 21:23:37,268:INFO:127.0.0.1 - - [06/Sep/2024 21:23:37] "GET / HTTP/1.1" 200 -
+2024-09-06 21:28:34,877:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 21:28:34,877:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 21:28:39,335:INFO:127.0.0.1 - - [06/Sep/2024 21:28:39] "GET / HTTP/1.1" 200 -
+2024-09-06 21:28:53,721:INFO:127.0.0.1 - - [06/Sep/2024 21:28:53] "[32mPOST /login HTTP/1.1[0m" 302 -
+2024-09-06 21:28:53,726:INFO:127.0.0.1 - - [06/Sep/2024 21:28:53] "GET / HTTP/1.1" 200 -
+2024-09-06 21:29:00,724:INFO:127.0.0.1 - - [06/Sep/2024 21:29:00] "[32mGET /logout HTTP/1.1[0m" 302 -
+2024-09-06 21:29:00,729:INFO:127.0.0.1 - - [06/Sep/2024 21:29:00] "GET / HTTP/1.1" 200 -
+2024-09-06 21:29:02,515:INFO:127.0.0.1 - - [06/Sep/2024 21:29:02] "[32mPOST /login HTTP/1.1[0m" 302 -
+2024-09-06 21:29:02,520:INFO:127.0.0.1 - - [06/Sep/2024 21:29:02] "GET / HTTP/1.1" 200 -
+2024-09-06 21:29:11,342:INFO:127.0.0.1 - - [06/Sep/2024 21:29:11] "[32mGET /logout HTTP/1.1[0m" 302 -
+2024-09-06 21:29:11,346:INFO:127.0.0.1 - - [06/Sep/2024 21:29:11] "GET / HTTP/1.1" 200 -
+2024-09-06 21:29:12,686:INFO:127.0.0.1 - - [06/Sep/2024 21:29:12] "[32mPOST /login HTTP/1.1[0m" 302 -
+2024-09-06 21:29:12,690:INFO:127.0.0.1 - - [06/Sep/2024 21:29:12] "GET / HTTP/1.1" 200 -
+2024-09-06 21:29:40,783:INFO:127.0.0.1 - - [06/Sep/2024 21:29:40] "[32mGET /logout HTTP/1.1[0m" 302 -
+2024-09-06 21:29:40,788:INFO:127.0.0.1 - - [06/Sep/2024 21:29:40] "GET / HTTP/1.1" 200 -
+2024-09-06 21:29:45,686:INFO:127.0.0.1 - - [06/Sep/2024 21:29:45] "[32mPOST /login HTTP/1.1[0m" 302 -
+2024-09-06 21:29:45,690:INFO:127.0.0.1 - - [06/Sep/2024 21:29:45] "GET / HTTP/1.1" 200 -
+2024-09-06 21:30:36,236:INFO:127.0.0.1 - - [06/Sep/2024 21:30:36] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-06 21:30:36,240:INFO:127.0.0.1 - - [06/Sep/2024 21:30:36] "GET / HTTP/1.1" 200 -
+2024-09-06 21:36:05,675:INFO:127.0.0.1 - - [06/Sep/2024 21:36:05] "GET / HTTP/1.1" 200 -
+2024-09-06 21:36:28,170:INFO:127.0.0.1 - - [06/Sep/2024 21:36:28] "[32mGET /logout HTTP/1.1[0m" 302 -
+2024-09-06 21:36:28,174:INFO:127.0.0.1 - - [06/Sep/2024 21:36:28] "GET / HTTP/1.1" 200 -
+2024-09-06 21:36:31,824:INFO:127.0.0.1 - - [06/Sep/2024 21:36:31] "[32mPOST /login HTTP/1.1[0m" 302 -
+2024-09-06 21:36:31,828:INFO:127.0.0.1 - - [06/Sep/2024 21:36:31] "GET / HTTP/1.1" 200 -
+2024-09-06 22:06:36,918:INFO:127.0.0.1 - - [06/Sep/2024 22:06:36] "GET / HTTP/1.1" 200 -
+2024-09-06 22:15:05,456:INFO:127.0.0.1 - - [06/Sep/2024 22:15:05] "GET / HTTP/1.1" 200 -
+2024-09-06 22:42:22,542:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 22:42:22,542:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 22:42:26,281:INFO:127.0.0.1 - - [06/Sep/2024 22:42:26] "GET / HTTP/1.1" 200 -
+2024-09-06 22:43:34,356:INFO:127.0.0.1 - - [06/Sep/2024 22:43:34] "[31m[1mPOST /submit_news HTTP/1.1[0m" 400 -
+2024-09-06 22:43:55,932:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 22:43:55,932:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 22:44:17,827:INFO:127.0.0.1 - - [06/Sep/2024 22:44:17] "GET / HTTP/1.1" 200 -
+2024-09-06 22:45:11,772:INFO:127.0.0.1 - - [06/Sep/2024 22:45:11] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-06 22:45:11,777:INFO:127.0.0.1 - - [06/Sep/2024 22:45:11] "GET / HTTP/1.1" 200 -
+2024-09-06 22:47:28,906:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 22:47:28,906:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 22:47:31,646:INFO:127.0.0.1 - - [06/Sep/2024 22:47:31] "GET / HTTP/1.1" 200 -
+2024-09-06 22:47:49,089:INFO:127.0.0.1 - - [06/Sep/2024 22:47:49] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-06 22:47:49,094:INFO:127.0.0.1 - - [06/Sep/2024 22:47:49] "GET / HTTP/1.1" 200 -
+2024-09-06 22:49:26,733:INFO:127.0.0.1 - - [06/Sep/2024 22:49:26] "GET / HTTP/1.1" 200 -
+2024-09-06 22:59:34,078:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 22:59:34,078:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 22:59:39,110:INFO:127.0.0.1 - - [06/Sep/2024 22:59:39] "GET / HTTP/1.1" 200 -
+2024-09-06 23:00:22,633:INFO:127.0.0.1 - - [06/Sep/2024 23:00:22] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-06 23:00:22,639:INFO:127.0.0.1 - - [06/Sep/2024 23:00:22] "GET / HTTP/1.1" 200 -
+2024-09-06 23:00:44,457:INFO:127.0.0.1 - - [06/Sep/2024 23:00:44] "GET / HTTP/1.1" 200 -
+2024-09-06 23:36:58,955:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 23:36:58,955:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 23:37:02,315:INFO:127.0.0.1 - - [06/Sep/2024 23:37:02] "GET / HTTP/1.1" 200 -
+2024-09-06 23:39:11,339:INFO:127.0.0.1 - - [06/Sep/2024 23:39:11] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-06 23:39:11,344:INFO:127.0.0.1 - - [06/Sep/2024 23:39:11] "GET / HTTP/1.1" 200 -
+2024-09-06 23:44:21,477:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 23:44:21,477:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 23:44:27,969:INFO:127.0.0.1 - - [06/Sep/2024 23:44:27] "GET / HTTP/1.1" 200 -
+2024-09-06 23:45:29,505:INFO:127.0.0.1 - - [06/Sep/2024 23:45:29] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-06 23:45:29,508:INFO:127.0.0.1 - - [06/Sep/2024 23:45:29] "GET / HTTP/1.1" 200 -
+2024-09-06 23:50:22,238:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 23:50:22,238:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 23:50:25,510:INFO:127.0.0.1 - - [06/Sep/2024 23:50:25] "GET / HTTP/1.1" 200 -
+2024-09-06 23:51:05,748:INFO:127.0.0.1 - - [06/Sep/2024 23:51:05] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-06 23:51:05,754:INFO:127.0.0.1 - - [06/Sep/2024 23:51:05] "GET / HTTP/1.1" 200 -
+2024-09-06 23:58:17,102:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 23:58:17,102:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 23:58:20,726:INFO:127.0.0.1 - - [06/Sep/2024 23:58:20] "GET / HTTP/1.1" 200 -
+2024-09-06 23:58:41,052:INFO:127.0.0.1 - - [06/Sep/2024 23:58:41] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-06 23:58:41,056:INFO:127.0.0.1 - - [06/Sep/2024 23:58:41] "GET / HTTP/1.1" 200 -
+2024-09-07 00:05:27,541:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-07 00:05:27,541:INFO:[33mPress CTRL+C to quit[0m
+2024-09-07 00:05:30,502:INFO:127.0.0.1 - - [07/Sep/2024 00:05:30] "GET / HTTP/1.1" 200 -
+2024-09-07 00:05:47,051:INFO:127.0.0.1 - - [07/Sep/2024 00:05:47] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-07 00:05:47,055:INFO:127.0.0.1 - - [07/Sep/2024 00:05:47] "GET / HTTP/1.1" 200 -
+2024-09-07 00:07:29,914:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-07 00:07:29,914:INFO:[33mPress CTRL+C to quit[0m
+2024-09-07 00:07:32,199:INFO:127.0.0.1 - - [07/Sep/2024 00:07:32] "GET / HTTP/1.1" 200 -
+2024-09-07 00:07:52,716:INFO:127.0.0.1 - - [07/Sep/2024 00:07:52] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-07 00:07:52,722:INFO:127.0.0.1 - - [07/Sep/2024 00:07:52] "GET / HTTP/1.1" 200 -
+2024-09-07 00:17:17,668:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-07 00:17:17,668:INFO:[33mPress CTRL+C to quit[0m
+2024-09-07 00:17:21,480:INFO:127.0.0.1 - - [07/Sep/2024 00:17:21] "GET / HTTP/1.1" 200 -
+2024-09-07 00:17:39,761:INFO:127.0.0.1 - - [07/Sep/2024 00:17:39] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-07 00:17:39,765:INFO:127.0.0.1 - - [07/Sep/2024 00:17:39] "GET / HTTP/1.1" 200 -
+2024-09-07 00:24:27,152:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-07 00:24:27,152:INFO:[33mPress CTRL+C to quit[0m
+2024-09-07 00:24:31,427:INFO:127.0.0.1 - - [07/Sep/2024 00:24:31] "GET / HTTP/1.1" 200 -
+2024-09-07 00:24:51,794:INFO:127.0.0.1 - - [07/Sep/2024 00:24:51] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-07 00:24:51,800:INFO:127.0.0.1 - - [07/Sep/2024 00:24:51] "GET / HTTP/1.1" 200 -
+2024-09-07 00:28:35,498:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-07 00:28:35,498:INFO:[33mPress CTRL+C to quit[0m
+2024-09-07 00:28:38,485:INFO:127.0.0.1 - - [07/Sep/2024 00:28:38] "GET / HTTP/1.1" 200 -
+2024-09-07 00:28:51,324:ERROR:Ошибка при отправке письма: name 'folder_link' is not defined
+2024-09-07 00:28:51,324:INFO:127.0.0.1 - - [07/Sep/2024 00:28:51] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-07 00:28:51,329:INFO:127.0.0.1 - - [07/Sep/2024 00:28:51] "GET / HTTP/1.1" 200 -
+2024-09-07 00:31:23,813:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-07 00:31:23,813:INFO:[33mPress CTRL+C to quit[0m
+2024-09-07 00:31:27,726:INFO:127.0.0.1 - - [07/Sep/2024 00:31:27] "GET / HTTP/1.1" 200 -
+2024-09-07 00:31:41,342:INFO:127.0.0.1 - - [07/Sep/2024 00:31:41] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-07 00:31:41,347:INFO:127.0.0.1 - - [07/Sep/2024 00:31:41] "GET / HTTP/1.1" 200 -
+2024-09-07 00:40:50,245:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-07 00:40:50,245:INFO:[33mPress CTRL+C to quit[0m
+2024-09-07 00:40:53,237:INFO:127.0.0.1 - - [07/Sep/2024 00:40:53] "GET / HTTP/1.1" 200 -
+2024-09-07 00:45:41,609:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-07 00:45:41,609:INFO:[33mPress CTRL+C to quit[0m
+2024-09-07 00:45:44,596:INFO:127.0.0.1 - - [07/Sep/2024 00:45:44] "GET / HTTP/1.1" 200 -
+2024-09-07 00:46:01,668:INFO:127.0.0.1 - - [07/Sep/2024 00:46:01] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-07 00:46:01,673:INFO:127.0.0.1 - - [07/Sep/2024 00:46:01] "GET / HTTP/1.1" 200 -

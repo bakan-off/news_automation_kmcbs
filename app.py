@@ -55,6 +55,10 @@ def submit_news():
     author = request.form['author'].strip()
     hashtags = request.form['hashtags'].strip()
 
+    # Получение выбранных социальных сетей
+    social_media = request.form.getlist('social_media')
+    print(f"Выбранные социальные сети: {social_media}")  # Отладочный вывод
+
     # Создаем уникальное имя папки с только датой и временем
     date = datetime.now().strftime("%d%m%Y-%H%M%S")
     folder_name = date  # Имя папки теперь только дата и время
@@ -86,14 +90,14 @@ def submit_news():
 
     # Отправка письма с новостью
     try:
-        send_email(title, description, author, age_rating, hashtags, file_urls, folder_name)
+        send_email(title, description, author, age_rating, hashtags, file_urls, folder_name, social_media)
     except Exception as e:
         logging.error(f"Ошибка при отправке письма: {e}")
 
     flash('Новости успешно отправлены!')
     return redirect(url_for('index'))
 
-def send_email(title, description, author, age_rating, hashtags, file_urls, folder_name):
+def send_email(title, description, author, age_rating, hashtags, file_urls, folder_name, social_media):
     # Настройки почты
     sender_email = os.getenv('SENDER_EMAIL')
     sender_password = os.getenv('SENDER_PASSWORD')
@@ -107,21 +111,46 @@ def send_email(title, description, author, age_rating, hashtags, file_urls, fold
 
     # Формируем тело письма
     folder_link = f"https://cloud.mail.ru/home/{folder_name}/"  # Обновленное имя папки
-    body = f"""{title}
-{description}
-{author}
-{hashtags}
 
-Ссылка на папку {title} ({age_rating}): {folder_link}
+    # Добавление кнопок со ссылками
+    buttons_html = ""
+    links = {
+        "МЦБС-Конда.рф": "http://xn----8sbbn3ajkhy2c.xn--p1ai/admin/index.html",
+        "Вконтакте": "https://vk.com/mukmcbs",
+        "Одноклассники": "https://ok.ru/mukmcbs",
+        "Telegram": "https://t.me/mukkmcbs"
+    }
+    for media in social_media:
+        if media in links:
+            buttons_html += f'<a href="{links[media]}" style="display: inline-block; margin: 5px; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">{media}</a>'
 
-Ссылки на загруженные файлы:
-"""
+    # Добавление HTML-контента в письмо
+    html_body = f"""
+    <html>
+    <body>
+        <p><strong>{title} ({age_rating})</strong></p>
+        <p style="margin: 0;">{description}</p>
+        <p style="margin: 0;">{author}</p>
+        <p>{hashtags}</p>
+        <div style="border: 1px solid #ddd; padding: 10px; margin-top: 20px;">
+            <p>Ссылка на папку {title} ({age_rating}): <a href="{folder_link}">{folder_link}</a></p>
+            <p>Ссылки на загруженные файлы:</p>
+            <ul>
+    """
     for url in file_urls:
-        # Замена в ссылках на файлы
         file_link = url.replace("https://webdav.cloud.mail.ru/", "https://cloud.mail.ru/home/")
-        body += f"{file_link}\n"
+        html_body += f"<li><a href='{file_link}'>{file_link}</a></li>"
+    html_body += "</ul>"
 
-    msg.attach(MIMEText(body, 'plain'))
+    if social_media:
+        html_body += "<p>Где публиковать новость:</p><ul>"
+        for media in social_media:
+            html_body += f"<li>{media}</li>"
+        html_body += "</ul>"
+
+    html_body += f"<p>{buttons_html}</p></div></body></html>"
+
+    msg.attach(MIMEText(html_body, 'html'))
 
     # Отправка письма через SMTP
     try:

@@ -75,7 +75,22 @@
 
                   <div class="mb-3">
                       <label for="age_rating" class="form-label">Возрастной ценз:</label>
-                      <input type="text" class="form-control" id="age_rating" name="age_rating" required>
+                      <div class="btn-group" role="group" aria-label="Базовая группа переключателей радио">
+                          <input type="radio" class="btn-check" name="age_rating" id="btnradio1" value="0+" autocomplete="off" checked>
+                          <label class="btn btn-outline-primary" for="btnradio1">0+</label>
+
+                          <input type="radio" class="btn-check" name="age_rating" id="btnradio2" value="6+" autocomplete="off">
+                          <label class="btn btn-outline-primary" for="btnradio2">6+</label>
+
+                          <input type="radio" class="btn-check" name="age_rating" id="btnradio3" value="12+" autocomplete="off">
+                          <label class="btn btn-outline-primary" for="btnradio3">12+</label>
+
+                          <input type="radio" class="btn-check" name="age_rating" id="btnradio4" value="16+" autocomplete="off">
+                          <label class="btn btn-outline-primary" for="btnradio4">16+</label>
+
+                          <input type="radio" class="btn-check" name="age_rating" id="btnradio5" value="18+" autocomplete="off">
+                          <label class="btn btn-outline-primary" for="btnradio5">18+</label>
+                      </div>
                   </div>
 
                   <div class="mb-3">
@@ -101,6 +116,31 @@
 
                   <div id="filedrag" class="mb-3">Или перетащите их сюда</div>
                   <ul id="file-list" class="list-group mb-3"></ul>
+                  <div class="mb-3">
+                      <label for="social_media" class="form-label">Где публиковать новость:</label>
+                      <ul class="list-group">
+                          <li class="list-group-item">
+                              <input class="form-check-input me-1" type="checkbox" name="social_media" value="МЦБС-Конда.рф" id="firstCheckbox" checked>
+                              <label class="form-check-label" for="firstCheckbox">МЦБС-Конда.рф</label>
+                          </li>
+                          <li class="list-group-item">
+                              <input class="form-check-input me-1" type="checkbox" name="social_media" value="Вконтакте" id="secondCheckbox" checked>
+                              <label class="form-check-label" for="secondCheckbox">Вконтакте</label>
+                          </li>
+                          <li class="list-group-item">
+                              <input class="form-check-input me-1" type="checkbox" name="social_media" value="Одноклассники" id="thirdCheckbox" checked>
+                              <label class="form-check-label" for="thirdCheckbox">Одноклассники</label>
+                          </li>
+                          <li class="list-group-item">
+                              <input class="form-check-input me-1" type="checkbox" name="social_media" value="Telegram" id="fourthCheckbox" checked>
+                              <label class="form-check-label" for="fourthCheckbox">Telegram</label>
+                          </li>
+                          <li class="list-group-item">
+                              <input class="form-check-input me-1" type="checkbox" name="social_media" disabled value="Viber" id="fifthCheckbox">
+                              <label class="form-check-label" for="fifthCheckbox">Viber</label>
+                          </li>
+                      </ul>
+                  </div>
 
                   <button type="submit" class="btn btn-primary">Отправить</button>
               </form>
