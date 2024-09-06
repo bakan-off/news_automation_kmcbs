@@ -1,0 +1,309 @@
+2024-09-06 16:19:59,358:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 16:19:59,358:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 16:25:05,442:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 16:25:05,442:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 16:25:10,561:INFO:127.0.0.1 - - [06/Sep/2024 16:25:10] "GET / HTTP/1.1" 200 -
+2024-09-06 16:25:10,624:INFO:127.0.0.1 - - [06/Sep/2024 16:25:10] "GET /static/style.css HTTP/1.1" 200 -
+2024-09-06 16:32:29,836:INFO:127.0.0.1 - - [06/Sep/2024 16:32:29] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-06 16:32:29,843:INFO:127.0.0.1 - - [06/Sep/2024 16:32:29] "GET / HTTP/1.1" 200 -
+2024-09-06 16:32:29,879:INFO:127.0.0.1 - - [06/Sep/2024 16:32:29] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 16:52:05,217:INFO:127.0.0.1 - - [06/Sep/2024 16:52:05] "GET / HTTP/1.1" 200 -
+2024-09-06 16:52:05,638:INFO:127.0.0.1 - - [06/Sep/2024 16:52:05] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:25:49,460:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 19:25:49,460:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 19:25:58,002:INFO:127.0.0.1 - - [06/Sep/2024 19:25:58] "GET / HTTP/1.1" 200 -
+2024-09-06 19:25:58,061:INFO:127.0.0.1 - - [06/Sep/2024 19:25:58] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:25:59,278:INFO:127.0.0.1 - - [06/Sep/2024 19:25:59] "GET / HTTP/1.1" 200 -
+2024-09-06 19:25:59,302:INFO:127.0.0.1 - - [06/Sep/2024 19:25:59] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:26:51,096:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 19:26:51,097:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 19:27:00,645:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 19:27:00,645:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 19:28:20,458:INFO:127.0.0.1 - - [06/Sep/2024 19:28:20] "GET / HTTP/1.1" 200 -
+2024-09-06 19:28:20,525:INFO:127.0.0.1 - - [06/Sep/2024 19:28:20] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:28:32,562:INFO:127.0.0.1 - - [06/Sep/2024 19:28:32] "GET / HTTP/1.1" 200 -
+2024-09-06 19:28:32,585:INFO:127.0.0.1 - - [06/Sep/2024 19:28:32] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:28:37,415:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 19:28:37,415:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 19:28:39,431:INFO:127.0.0.1 - - [06/Sep/2024 19:28:39] "GET / HTTP/1.1" 200 -
+2024-09-06 19:28:39,455:INFO:127.0.0.1 - - [06/Sep/2024 19:28:39] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:28:41,495:INFO:127.0.0.1 - - [06/Sep/2024 19:28:41] "GET / HTTP/1.1" 200 -
+2024-09-06 19:28:41,517:INFO:127.0.0.1 - - [06/Sep/2024 19:28:41] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:33:00,075:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 19:33:00,075:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 19:33:03,562:INFO:127.0.0.1 - - [06/Sep/2024 19:33:03] "GET / HTTP/1.1" 200 -
+2024-09-06 19:33:03,603:INFO:127.0.0.1 - - [06/Sep/2024 19:33:03] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:34:57,428:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 19:34:57,428:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 19:35:02,918:INFO:127.0.0.1 - - [06/Sep/2024 19:35:02] "GET / HTTP/1.1" 200 -
+2024-09-06 19:35:02,956:INFO:127.0.0.1 - - [06/Sep/2024 19:35:02] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:38:50,265:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 19:38:50,266:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 19:38:55,333:INFO:127.0.0.1 - - [06/Sep/2024 19:38:55] "GET / HTTP/1.1" 200 -
+2024-09-06 19:38:55,371:INFO:127.0.0.1 - - [06/Sep/2024 19:38:55] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:38:56,309:INFO:127.0.0.1 - - [06/Sep/2024 19:38:56] "GET / HTTP/1.1" 200 -
+2024-09-06 19:38:56,329:INFO:127.0.0.1 - - [06/Sep/2024 19:38:56] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:38:57,171:INFO:127.0.0.1 - - [06/Sep/2024 19:38:57] "GET / HTTP/1.1" 200 -
+2024-09-06 19:38:57,197:INFO:127.0.0.1 - - [06/Sep/2024 19:38:57] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:38:57,685:INFO:127.0.0.1 - - [06/Sep/2024 19:38:57] "GET / HTTP/1.1" 200 -
+2024-09-06 19:38:57,711:INFO:127.0.0.1 - - [06/Sep/2024 19:38:57] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:38:58,322:INFO:127.0.0.1 - - [06/Sep/2024 19:38:58] "GET / HTTP/1.1" 200 -
+2024-09-06 19:38:58,345:INFO:127.0.0.1 - - [06/Sep/2024 19:38:58] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:38:58,589:INFO:127.0.0.1 - - [06/Sep/2024 19:38:58] "GET / HTTP/1.1" 200 -
+2024-09-06 19:38:58,611:INFO:127.0.0.1 - - [06/Sep/2024 19:38:58] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:38:58,802:INFO:127.0.0.1 - - [06/Sep/2024 19:38:58] "GET / HTTP/1.1" 200 -
+2024-09-06 19:38:58,826:INFO:127.0.0.1 - - [06/Sep/2024 19:38:58] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:38:59,008:INFO:127.0.0.1 - - [06/Sep/2024 19:38:59] "GET / HTTP/1.1" 200 -
+2024-09-06 19:38:59,030:INFO:127.0.0.1 - - [06/Sep/2024 19:38:59] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:38:59,189:INFO:127.0.0.1 - - [06/Sep/2024 19:38:59] "GET / HTTP/1.1" 200 -
+2024-09-06 19:38:59,212:INFO:127.0.0.1 - - [06/Sep/2024 19:38:59] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:38:59,376:INFO:127.0.0.1 - - [06/Sep/2024 19:38:59] "GET / HTTP/1.1" 200 -
+2024-09-06 19:38:59,400:INFO:127.0.0.1 - - [06/Sep/2024 19:38:59] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:38:59,945:INFO:127.0.0.1 - - [06/Sep/2024 19:38:59] "GET / HTTP/1.1" 200 -
+2024-09-06 19:38:59,969:INFO:127.0.0.1 - - [06/Sep/2024 19:38:59] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:42:17,839:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 19:42:17,840:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 19:42:20,804:INFO:127.0.0.1 - - [06/Sep/2024 19:42:20] "GET / HTTP/1.1" 200 -
+2024-09-06 19:42:20,847:INFO:127.0.0.1 - - [06/Sep/2024 19:42:20] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:43:37,861:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 19:43:37,861:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 19:43:40,308:INFO:127.0.0.1 - - [06/Sep/2024 19:43:40] "GET / HTTP/1.1" 200 -
+2024-09-06 19:43:40,343:INFO:127.0.0.1 - - [06/Sep/2024 19:43:40] "GET /static/style.css HTTP/1.1" 200 -
+2024-09-06 19:43:41,616:INFO:127.0.0.1 - - [06/Sep/2024 19:43:41] "GET / HTTP/1.1" 200 -
+2024-09-06 19:43:41,637:INFO:127.0.0.1 - - [06/Sep/2024 19:43:41] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:43:42,264:INFO:127.0.0.1 - - [06/Sep/2024 19:43:42] "GET / HTTP/1.1" 200 -
+2024-09-06 19:43:42,288:INFO:127.0.0.1 - - [06/Sep/2024 19:43:42] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:43:42,839:INFO:127.0.0.1 - - [06/Sep/2024 19:43:42] "GET / HTTP/1.1" 200 -
+2024-09-06 19:43:42,862:INFO:127.0.0.1 - - [06/Sep/2024 19:43:42] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:43:43,179:INFO:127.0.0.1 - - [06/Sep/2024 19:43:43] "GET / HTTP/1.1" 200 -
+2024-09-06 19:43:43,204:INFO:127.0.0.1 - - [06/Sep/2024 19:43:43] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:43:43,375:INFO:127.0.0.1 - - [06/Sep/2024 19:43:43] "GET / HTTP/1.1" 200 -
+2024-09-06 19:43:43,397:INFO:127.0.0.1 - - [06/Sep/2024 19:43:43] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:43:43,550:INFO:127.0.0.1 - - [06/Sep/2024 19:43:43] "GET / HTTP/1.1" 200 -
+2024-09-06 19:43:43,573:INFO:127.0.0.1 - - [06/Sep/2024 19:43:43] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:43:46,399:INFO:127.0.0.1 - - [06/Sep/2024 19:43:46] "GET / HTTP/1.1" 200 -
+2024-09-06 19:43:46,421:INFO:127.0.0.1 - - [06/Sep/2024 19:43:46] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:45:10,877:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 19:45:10,877:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 19:45:13,689:INFO:127.0.0.1 - - [06/Sep/2024 19:45:13] "GET / HTTP/1.1" 200 -
+2024-09-06 19:45:13,731:INFO:127.0.0.1 - - [06/Sep/2024 19:45:13] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:45:14,543:INFO:127.0.0.1 - - [06/Sep/2024 19:45:14] "GET / HTTP/1.1" 200 -
+2024-09-06 19:45:14,566:INFO:127.0.0.1 - - [06/Sep/2024 19:45:14] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:45:15,041:INFO:127.0.0.1 - - [06/Sep/2024 19:45:15] "GET / HTTP/1.1" 200 -
+2024-09-06 19:45:15,062:INFO:127.0.0.1 - - [06/Sep/2024 19:45:15] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:45:15,261:INFO:127.0.0.1 - - [06/Sep/2024 19:45:15] "GET / HTTP/1.1" 200 -
+2024-09-06 19:45:15,281:INFO:127.0.0.1 - - [06/Sep/2024 19:45:15] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:45:15,450:INFO:127.0.0.1 - - [06/Sep/2024 19:45:15] "GET / HTTP/1.1" 200 -
+2024-09-06 19:45:15,469:INFO:127.0.0.1 - - [06/Sep/2024 19:45:15] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:45:15,649:INFO:127.0.0.1 - - [06/Sep/2024 19:45:15] "GET / HTTP/1.1" 200 -
+2024-09-06 19:45:15,670:INFO:127.0.0.1 - - [06/Sep/2024 19:45:15] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:45:15,932:INFO:127.0.0.1 - - [06/Sep/2024 19:45:15] "GET / HTTP/1.1" 200 -
+2024-09-06 19:45:15,957:INFO:127.0.0.1 - - [06/Sep/2024 19:45:15] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:45:16,114:INFO:127.0.0.1 - - [06/Sep/2024 19:45:16] "GET / HTTP/1.1" 200 -
+2024-09-06 19:45:16,136:INFO:127.0.0.1 - - [06/Sep/2024 19:45:16] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:46:13,604:INFO:127.0.0.1 - - [06/Sep/2024 19:46:13] "GET / HTTP/1.1" 200 -
+2024-09-06 19:46:13,633:INFO:127.0.0.1 - - [06/Sep/2024 19:46:13] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:46:14,300:INFO:127.0.0.1 - - [06/Sep/2024 19:46:14] "GET / HTTP/1.1" 200 -
+2024-09-06 19:46:14,326:INFO:127.0.0.1 - - [06/Sep/2024 19:46:14] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:46:19,151:INFO:127.0.0.1 - - [06/Sep/2024 19:46:19] "GET / HTTP/1.1" 200 -
+2024-09-06 19:46:19,280:INFO:127.0.0.1 - - [06/Sep/2024 19:46:19] "GET /static/style.css HTTP/1.1" 200 -
+2024-09-06 19:46:19,423:INFO:127.0.0.1 - - [06/Sep/2024 19:46:19] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-09-06 19:46:28,944:INFO:127.0.0.1 - - [06/Sep/2024 19:46:28] "[32mPOST /login HTTP/1.1[0m" 302 -
+2024-09-06 19:46:28,952:INFO:127.0.0.1 - - [06/Sep/2024 19:46:28] "GET / HTTP/1.1" 200 -
+2024-09-06 19:46:28,977:INFO:127.0.0.1 - - [06/Sep/2024 19:46:28] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:46:46,688:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 19:46:46,688:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 19:46:51,214:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 19:46:51,214:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 19:46:54,607:INFO:127.0.0.1 - - [06/Sep/2024 19:46:54] "GET / HTTP/1.1" 200 -
+2024-09-06 19:46:54,644:INFO:127.0.0.1 - - [06/Sep/2024 19:46:54] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:46:55,625:INFO:127.0.0.1 - - [06/Sep/2024 19:46:55] "GET / HTTP/1.1" 200 -
+2024-09-06 19:46:55,651:INFO:127.0.0.1 - - [06/Sep/2024 19:46:55] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:46:56,349:INFO:127.0.0.1 - - [06/Sep/2024 19:46:56] "GET / HTTP/1.1" 200 -
+2024-09-06 19:46:56,369:INFO:127.0.0.1 - - [06/Sep/2024 19:46:56] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:46:56,761:INFO:127.0.0.1 - - [06/Sep/2024 19:46:56] "GET / HTTP/1.1" 200 -
+2024-09-06 19:46:56,783:INFO:127.0.0.1 - - [06/Sep/2024 19:46:56] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:48:38,383:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 19:48:38,383:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 19:48:42,450:INFO:127.0.0.1 - - [06/Sep/2024 19:48:42] "GET / HTTP/1.1" 200 -
+2024-09-06 19:48:42,473:INFO:127.0.0.1 - - [06/Sep/2024 19:48:42] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:48:43,157:INFO:127.0.0.1 - - [06/Sep/2024 19:48:43] "GET / HTTP/1.1" 200 -
+2024-09-06 19:48:43,177:INFO:127.0.0.1 - - [06/Sep/2024 19:48:43] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:48:43,475:INFO:127.0.0.1 - - [06/Sep/2024 19:48:43] "GET / HTTP/1.1" 200 -
+2024-09-06 19:48:43,497:INFO:127.0.0.1 - - [06/Sep/2024 19:48:43] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:48:44,119:INFO:127.0.0.1 - - [06/Sep/2024 19:48:44] "GET / HTTP/1.1" 200 -
+2024-09-06 19:48:44,140:INFO:127.0.0.1 - - [06/Sep/2024 19:48:44] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:48:44,523:INFO:127.0.0.1 - - [06/Sep/2024 19:48:44] "GET / HTTP/1.1" 200 -
+2024-09-06 19:48:44,544:INFO:127.0.0.1 - - [06/Sep/2024 19:48:44] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:48:44,745:INFO:127.0.0.1 - - [06/Sep/2024 19:48:44] "GET / HTTP/1.1" 200 -
+2024-09-06 19:48:44,766:INFO:127.0.0.1 - - [06/Sep/2024 19:48:44] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:48:44,923:INFO:127.0.0.1 - - [06/Sep/2024 19:48:44] "GET / HTTP/1.1" 200 -
+2024-09-06 19:48:44,944:INFO:127.0.0.1 - - [06/Sep/2024 19:48:44] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:48:45,100:INFO:127.0.0.1 - - [06/Sep/2024 19:48:45] "GET / HTTP/1.1" 200 -
+2024-09-06 19:48:45,121:INFO:127.0.0.1 - - [06/Sep/2024 19:48:45] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:48:45,275:INFO:127.0.0.1 - - [06/Sep/2024 19:48:45] "GET / HTTP/1.1" 200 -
+2024-09-06 19:48:45,296:INFO:127.0.0.1 - - [06/Sep/2024 19:48:45] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:48:45,444:INFO:127.0.0.1 - - [06/Sep/2024 19:48:45] "GET / HTTP/1.1" 200 -
+2024-09-06 19:48:45,464:INFO:127.0.0.1 - - [06/Sep/2024 19:48:45] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:48:51,453:INFO:127.0.0.1 - - [06/Sep/2024 19:48:51] "GET / HTTP/1.1" 200 -
+2024-09-06 19:48:51,474:INFO:127.0.0.1 - - [06/Sep/2024 19:48:51] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:48:52,080:INFO:127.0.0.1 - - [06/Sep/2024 19:48:52] "GET / HTTP/1.1" 200 -
+2024-09-06 19:48:52,101:INFO:127.0.0.1 - - [06/Sep/2024 19:48:52] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:48:52,421:INFO:127.0.0.1 - - [06/Sep/2024 19:48:52] "GET / HTTP/1.1" 200 -
+2024-09-06 19:48:52,443:INFO:127.0.0.1 - - [06/Sep/2024 19:48:52] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:48:52,605:INFO:127.0.0.1 - - [06/Sep/2024 19:48:52] "GET / HTTP/1.1" 200 -
+2024-09-06 19:48:52,624:INFO:127.0.0.1 - - [06/Sep/2024 19:48:52] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:51:09,161:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 19:51:09,161:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 19:52:16,041:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 19:52:16,042:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 19:52:21,778:INFO:127.0.0.1 - - [06/Sep/2024 19:52:21] "GET / HTTP/1.1" 200 -
+2024-09-06 19:52:21,818:INFO:127.0.0.1 - - [06/Sep/2024 19:52:21] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:52:22,594:INFO:127.0.0.1 - - [06/Sep/2024 19:52:22] "GET / HTTP/1.1" 200 -
+2024-09-06 19:52:22,613:INFO:127.0.0.1 - - [06/Sep/2024 19:52:22] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:52:27,553:INFO:127.0.0.1 - - [06/Sep/2024 19:52:27] "GET / HTTP/1.1" 200 -
+2024-09-06 19:52:27,580:INFO:127.0.0.1 - - [06/Sep/2024 19:52:27] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:52:28,044:INFO:127.0.0.1 - - [06/Sep/2024 19:52:28] "GET / HTTP/1.1" 200 -
+2024-09-06 19:52:28,068:INFO:127.0.0.1 - - [06/Sep/2024 19:52:28] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:52:28,253:INFO:127.0.0.1 - - [06/Sep/2024 19:52:28] "GET / HTTP/1.1" 200 -
+2024-09-06 19:52:28,272:INFO:127.0.0.1 - - [06/Sep/2024 19:52:28] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:52:28,422:INFO:127.0.0.1 - - [06/Sep/2024 19:52:28] "GET / HTTP/1.1" 200 -
+2024-09-06 19:52:28,447:INFO:127.0.0.1 - - [06/Sep/2024 19:52:28] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:52:28,807:INFO:127.0.0.1 - - [06/Sep/2024 19:52:28] "GET / HTTP/1.1" 200 -
+2024-09-06 19:52:28,830:INFO:127.0.0.1 - - [06/Sep/2024 19:52:28] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:52:34,008:INFO:127.0.0.1 - - [06/Sep/2024 19:52:34] "GET / HTTP/1.1" 200 -
+2024-09-06 19:52:34,025:INFO:127.0.0.1 - - [06/Sep/2024 19:52:34] "GET /static/style.css HTTP/1.1" 200 -
+2024-09-06 19:54:50,213:INFO:127.0.0.1 - - [06/Sep/2024 19:54:50] "GET / HTTP/1.1" 200 -
+2024-09-06 19:54:50,250:INFO:127.0.0.1 - - [06/Sep/2024 19:54:50] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:55:12,916:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 19:55:12,916:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 19:55:18,165:INFO:127.0.0.1 - - [06/Sep/2024 19:55:18] "GET / HTTP/1.1" 200 -
+2024-09-06 19:55:18,188:INFO:127.0.0.1 - - [06/Sep/2024 19:55:18] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:55:18,812:INFO:127.0.0.1 - - [06/Sep/2024 19:55:18] "GET / HTTP/1.1" 200 -
+2024-09-06 19:55:18,835:INFO:127.0.0.1 - - [06/Sep/2024 19:55:18] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:55:19,007:INFO:127.0.0.1 - - [06/Sep/2024 19:55:19] "GET / HTTP/1.1" 200 -
+2024-09-06 19:55:19,034:INFO:127.0.0.1 - - [06/Sep/2024 19:55:19] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:55:19,188:INFO:127.0.0.1 - - [06/Sep/2024 19:55:19] "GET / HTTP/1.1" 200 -
+2024-09-06 19:55:19,211:INFO:127.0.0.1 - - [06/Sep/2024 19:55:19] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:55:54,568:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 19:55:54,568:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 19:55:59,482:INFO:127.0.0.1 - - [06/Sep/2024 19:55:59] "GET / HTTP/1.1" 200 -
+2024-09-06 19:55:59,517:INFO:127.0.0.1 - - [06/Sep/2024 19:55:59] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:56:00,577:INFO:127.0.0.1 - - [06/Sep/2024 19:56:00] "GET / HTTP/1.1" 200 -
+2024-09-06 19:56:00,598:INFO:127.0.0.1 - - [06/Sep/2024 19:56:00] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2024-09-06 19:59:47,294:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 19:59:47,294:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 20:00:00,810:INFO:127.0.0.1 - - [06/Sep/2024 20:00:00] "GET / HTTP/1.1" 200 -
+2024-09-06 20:00:01,976:INFO:127.0.0.1 - - [06/Sep/2024 20:00:01] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-09-06 20:07:19,067:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 20:07:19,067:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 20:07:21,221:INFO:127.0.0.1 - - [06/Sep/2024 20:07:21] "GET / HTTP/1.1" 200 -
+2024-09-06 20:12:04,530:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 20:12:04,530:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 20:12:14,358:INFO:127.0.0.1 - - [06/Sep/2024 20:12:14] "GET / HTTP/1.1" 200 -
+2024-09-06 20:14:06,537:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 20:14:06,537:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 20:14:10,424:INFO:127.0.0.1 - - [06/Sep/2024 20:14:10] "GET / HTTP/1.1" 200 -
+2024-09-06 20:15:27,443:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 20:15:27,443:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 20:15:33,174:INFO:127.0.0.1 - - [06/Sep/2024 20:15:33] "GET / HTTP/1.1" 200 -
+2024-09-06 20:19:45,606:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 20:19:45,606:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 20:19:48,523:INFO:127.0.0.1 - - [06/Sep/2024 20:19:48] "GET / HTTP/1.1" 200 -
+2024-09-06 20:22:33,006:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 20:22:33,006:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 20:22:38,100:INFO:127.0.0.1 - - [06/Sep/2024 20:22:38] "GET / HTTP/1.1" 200 -
+2024-09-06 20:27:59,841:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 20:27:59,841:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 20:28:04,453:INFO:127.0.0.1 - - [06/Sep/2024 20:28:04] "GET / HTTP/1.1" 200 -
+2024-09-06 20:28:15,696:INFO:127.0.0.1 - - [06/Sep/2024 20:28:15] "[32mGET /logout HTTP/1.1[0m" 302 -
+2024-09-06 20:28:15,700:INFO:127.0.0.1 - - [06/Sep/2024 20:28:15] "GET / HTTP/1.1" 200 -
+2024-09-06 20:28:26,053:INFO:127.0.0.1 - - [06/Sep/2024 20:28:26] "[32mPOST /login HTTP/1.1[0m" 302 -
+2024-09-06 20:28:26,056:INFO:127.0.0.1 - - [06/Sep/2024 20:28:26] "GET / HTTP/1.1" 200 -
+2024-09-06 20:31:15,831:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 20:31:15,831:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 20:31:20,310:INFO:127.0.0.1 - - [06/Sep/2024 20:31:20] "GET / HTTP/1.1" 200 -
+2024-09-06 20:34:14,814:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 20:34:14,814:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 20:34:17,316:INFO:127.0.0.1 - - [06/Sep/2024 20:34:17] "GET / HTTP/1.1" 200 -
+2024-09-06 20:34:19,512:INFO:127.0.0.1 - - [06/Sep/2024 20:34:19] "GET / HTTP/1.1" 200 -
+2024-09-06 20:34:21,542:INFO:127.0.0.1 - - [06/Sep/2024 20:34:21] "GET / HTTP/1.1" 200 -
+2024-09-06 20:35:48,635:INFO:127.0.0.1 - - [06/Sep/2024 20:35:48] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-06 20:35:48,640:INFO:127.0.0.1 - - [06/Sep/2024 20:35:48] "GET / HTTP/1.1" 200 -
+2024-09-06 20:37:18,778:INFO:127.0.0.1 - - [06/Sep/2024 20:37:18] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-06 20:37:18,784:INFO:127.0.0.1 - - [06/Sep/2024 20:37:18] "GET / HTTP/1.1" 200 -
+2024-09-06 20:38:09,394:INFO:127.0.0.1 - - [06/Sep/2024 20:38:09] "GET / HTTP/1.1" 200 -
+2024-09-06 20:39:13,773:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 20:39:13,773:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 20:39:22,329:INFO:127.0.0.1 - - [06/Sep/2024 20:39:22] "GET / HTTP/1.1" 200 -
+2024-09-06 20:39:58,657:INFO:127.0.0.1 - - [06/Sep/2024 20:39:58] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-06 20:39:58,663:INFO:127.0.0.1 - - [06/Sep/2024 20:39:58] "GET / HTTP/1.1" 200 -
+2024-09-06 20:51:18,165:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 20:51:18,165:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 20:51:21,178:INFO:127.0.0.1 - - [06/Sep/2024 20:51:21] "GET / HTTP/1.1" 200 -
+2024-09-06 20:52:22,525:INFO:127.0.0.1 - - [06/Sep/2024 20:52:22] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-06 20:52:22,530:INFO:127.0.0.1 - - [06/Sep/2024 20:52:22] "GET / HTTP/1.1" 200 -
+2024-09-06 20:56:35,765:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 20:56:35,766:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 20:56:39,050:INFO:127.0.0.1 - - [06/Sep/2024 20:56:39] "GET / HTTP/1.1" 200 -
+2024-09-06 20:59:55,925:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 20:59:55,926:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 21:00:00,483:INFO:127.0.0.1 - - [06/Sep/2024 21:00:00] "GET / HTTP/1.1" 200 -
+2024-09-06 21:00:57,229:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 21:00:57,229:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 21:01:02,540:INFO:127.0.0.1 - - [06/Sep/2024 21:01:02] "GET / HTTP/1.1" 200 -
+2024-09-06 21:02:06,830:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 21:02:06,831:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 21:02:09,370:INFO:127.0.0.1 - - [06/Sep/2024 21:02:09] "GET / HTTP/1.1" 200 -
+2024-09-06 21:06:35,669:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 21:06:35,669:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 21:06:43,642:INFO:127.0.0.1 - - [06/Sep/2024 21:06:43] "GET / HTTP/1.1" 200 -
+2024-09-06 21:08:42,248:INFO:127.0.0.1 - - [06/Sep/2024 21:08:42] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-06 21:08:42,252:INFO:127.0.0.1 - - [06/Sep/2024 21:08:42] "GET / HTTP/1.1" 200 -
+2024-09-06 21:09:02,046:INFO:127.0.0.1 - - [06/Sep/2024 21:09:02] "GET / HTTP/1.1" 200 -
+2024-09-06 21:10:06,842:INFO:127.0.0.1 - - [06/Sep/2024 21:10:06] "GET / HTTP/1.1" 200 -
+2024-09-06 21:11:32,180:INFO:127.0.0.1 - - [06/Sep/2024 21:11:32] "[32mPOST /submit_news HTTP/1.1[0m" 302 -
+2024-09-06 21:11:32,184:INFO:127.0.0.1 - - [06/Sep/2024 21:11:32] "GET / HTTP/1.1" 200 -
+2024-09-06 21:19:25,443:INFO:127.0.0.1 - - [06/Sep/2024 21:19:25] "GET / HTTP/1.1" 200 -
+2024-09-06 21:23:09,544:INFO:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-09-06 21:23:09,544:INFO:[33mPress CTRL+C to quit[0m
+2024-09-06 21:23:29,623:INFO:127.0.0.1 - - [06/Sep/2024 21:23:29] "GET / HTTP/1.1" 200 -
+2024-09-06 21:23:37,264:INFO:127.0.0.1 - - [06/Sep/2024 21:23:37] "[32mGET /logout HTTP/1.1[0m" 302 -
+2024-09-06 21:23:37,268:INFO:127.0.0.1 - - [06/Sep/2024 21:23:37] "GET / HTTP/1.1" 200 -

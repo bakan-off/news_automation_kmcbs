@@ -1,63 +1,152 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>Отправка новости</title>
-</head>
+<!doctype html>
+<html lang="ru" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Публикация новостей</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+      body {
+        transition: background-color 0.5s, color 0.5s;
+      }
+      #filedrag {
+        border-radius: 7px;
+        border: 2px dashed #3DA8BA;
+        color: #555555;
+        cursor: default;
+        display: none; /* Скрыто по умолчанию */
+        margin: 1em 0;
+        padding: 1em;
+        text-align: center;
+        background: #f9f9f9;
+        transition: background-color 0.3s, border-color 0.3s;
+      }
+
+      #filedrag.hover {
+        border-style: solid;
+        box-shadow: 0 3px 4px #dbdbdb inset;
+        background-color: #e0f7fa;
+        border-color: #00796b;
+      }
+
+      [data-bs-theme="dark"] #filedrag {
+        background: #333;
+        color: #ccc;
+        border-color: #555;
+      }
+
+      [data-bs-theme="dark"] #filedrag.hover {
+        background-color: #444;
+        border-color: #00acc1;
+      }
+
+      .success-message {
+        font-size: 1.5em;
+        text-align: center;
+      }
+    </style>
+  </head>
 <body>
-    <h1>Отправка новости</h1>
+    <div class="container mt-5">
+        <h1 class="text-center">Публикация новостей</h1>
 
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul>
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="alert alert-info success-message">
+              <ul>
+              {% for message in messages %}
+                <li>Новость подготовлена и отправлена на публикацию. Спасибо за вашу работу!</li>
+              {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+        {% endwith %}
 
-    {% if session['logged_in'] %}
-      <form action="/submit_news" method="post" enctype="multipart/form-data">
-          <label for="title">Название новости:</label>
-          <input type="text" id="title" name="title" required><br>
+        {% if session['logged_in'] %}
+          <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 col-sm-12">
+              <form action="/submit_news" method="post" enctype="multipart/form-data">
+                  <div class="mb-3">
+                      <label for="title" class="form-label">Название новости:</label>
+                      <input type="text" class="form-control" id="title" name="title" required>
+                  </div>
 
-          <label for="age_rating">Возрастной ценз:</label>
-          <input type="text" id="age_rating" name="age_rating" required><br>
+                  <div class="mb-3">
+                      <label for="age_rating" class="form-label">Возрастной ценз:</label>
+                      <input type="text" class="form-control" id="age_rating" name="age_rating" required>
+                  </div>
 
-          <label for="description">Описание:</label><br>
-          <textarea id="description" name="description" rows="5" required></textarea><br>
+                  <div class="mb-3">
+                      <label for="description" class="form-label">Описание:</label>
+                      <textarea class="form-control" id="description" name="description" rows="5" required></textarea>
+                  </div>
 
-          <label for="author">Автор или библиотека:</label>
-          <input type="text" id="author" name="author" required><br>
+                  <div class="mb-3">
+                      <label for="author" class="form-label">Автор или библиотека:</label>
+                      <input type="text" class="form-control" id="author" name="author" required>
+                  </div>
 
-          <label for="hashtags">Хештеги:</label>
-          <input type="text" id="hashtags" name="hashtags"><br>
+                  <div class="mb-3">
+                      <label for="hashtags" class="form-label">Хештеги:</label>
+                      <input type="text" class="form-control" id="hashtags" name="hashtags">
+                  </div>
 
-          <label for="file-upload" class="custom-file-upload">Выберите файлы</label>
-          <input id="file-upload" type="file" name="files" multiple style="display: none;" onchange="updateFileList();"/>
-          <button type="button" class="upload-button" onclick="document.getElementById('file-upload').click();">Выбрать файлы</button><br>
+                  <div class="mb-3">
+                      <label for="file-upload" class="form-label">Выберите файлы</label>
+                      <input id="file-upload" type="file" class="form-control" name="files" multiple style="display: none;" onchange="updateFileList();"/>
+                      <button type="button" class="btn btn-primary" onclick="document.getElementById('file-upload').click();">Выбрать файлы</button>
+                  </div>
 
-          <div id="filedrag">Или перетащите их сюда</div>
-          <ul id="file-list"></ul>
+                  <div id="filedrag" class="mb-3">Или перетащите их сюда</div>
+                  <ul id="file-list" class="list-group mb-3"></ul>
 
-          <button type="submit">Отправить</button>
-      </form>
-      <a href="/logout">Выйти</a>
-    {% else %}
-      <h2>Авторизация</h2>
-      <form action="/login" method="post">
-          <label for="user_cod">Логин:</label>
-          <input type="text" id="user_cod" name="user_cod" required><br>
+                  <button type="submit" class="btn btn-primary">Отправить</button>
+              </form>
+            </div>
+          </div>
 
-          <label for="password_cod">Пароль:</label>
-          <input type="password" id="password_cod" name="password_cod" required><br>
+          <!-- Кнопка для открытия боковой панели -->
+          <button class="btn btn-primary mt-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Настройки</button>
+        {% else %}
+          <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+              <h2 class="text-center">Авторизация</h2>
+              <form action="/login" method="post">
+                  <div class="mb-3">
+                      <label for="user_cod" class="form-label">Логин:</label>
+                      <input type="text" class="form-control" id="user_cod" name="user_cod" required>
+                  </div>
 
-          <button type="submit">Войти</button>
-      </form>
-    {% endif %}
+                  <div class="mb-3">
+                      <label for="password_cod" class="form-label">Пароль:</label>
+                      <input type="password" class="form-control" id="password_cod" name="password_cod" required>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Войти</button>
+              </form>
+            </div>
+          </div>
+        {% endif %}
+    </div>
+
+    <!-- Боковая панель -->
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Настройки темы</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="form-check form-switch form-check-reverse">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckReverse">
+          <label class="form-check-label" for="flexSwitchCheckReverse">Тема оформления: День/Ночь</label>
+        </div>
+      </div>
+      <div class="offcanvas-footer">
+        <a href="/logout" class="btn btn-secondary w-100">Выход</a>
+      </div>
+    </div>
 
     <script>
     let filesArray = [];
@@ -89,7 +178,11 @@
     function FileDragHover(e) {
         e.stopPropagation();
         e.preventDefault();
-        e.target.className = (e.type === "dragover" ? "hover" : "");
+        if (e.type === "dragover") {
+            $id("filedrag").classList.add("hover");
+        } else {
+            $id("filedrag").classList.remove("hover");
+        }
     }
 
     function FileSelectHandler(e) {
@@ -122,9 +215,27 @@
         filesArray.forEach(file => {
             const li = document.createElement('li');
             li.textContent = file.name; // Отобразить имя файла
+            li.classList.add('list-group-item');
             fileList.appendChild(li);
         });
     }
+
+    // Код для переключения темы
+    const switchTheme = document.getElementById('flexSwitchCheckReverse');
+    const setTheme = (theme) => {
+        document.documentElement.setAttribute('data-bs-theme', theme);
+        localStorage.setItem('theme', theme);
+    };
+
+    // Установка темы при загрузке страницы
+    const storedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(storedTheme);
+    switchTheme.checked = storedTheme === 'dark';
+
+    switchTheme.addEventListener('change', () => {
+        const theme = switchTheme.checked ? 'dark' : 'light';
+        setTheme(theme);
+    });
     </script>
 </body>
 </html>
