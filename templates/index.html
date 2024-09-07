@@ -170,7 +170,6 @@
           </div>
         {% endif %}
     </div>
-
     <!-- Боковая панель -->
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
       <div class="offcanvas-header">
@@ -236,7 +235,12 @@
     function AddFileToInput(file) {
         // Проверяем, есть ли файл уже в массиве
         if (!filesArray.some(f => f.name === file.name)) {
-            filesArray.push(file); // Добавляем файл в массив
+            if (filesArray.length < 10) {
+                filesArray.push(file); // Добавляем файл в массив
+            } else {
+                alert("Максимум 10 файлов можно прикрепить.");
+                return;
+            }
         }
 
         // Обновляем input.files

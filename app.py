@@ -1,4 +1,5 @@
 import logging
+from logging.handlers import RotatingFileHandler
 from flask import Flask, request, render_template, redirect, url_for, session, flash
 from webdav3.client import Client
 import os
@@ -8,12 +9,15 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-# Настройка логирования
-logging.basicConfig(
-    filename='error.log',  # Имя файла для логов ошибок
-    level=logging.ERROR,  # Уровень логирования
-    format='%(asctime)s:%(levelname)s:%(message)s'
-)
+# Настройка логирования с ротацией
+handler = RotatingFileHandler('error.log', maxBytes=1000000, backupCount=5)  # 1MB на файл, до 5 архивов
+handler.setLevel(logging.ERROR)
+formatter = logging.Formatter('%(asctime)s:%(levelname)s:%(message)s')
+handler.setFormatter(formatter)
+
+logger = logging.getLogger()
+logger.setLevel(logging.ERROR)
+logger.addHandler(handler)
 
 # Создание экземпляра приложения Flask
 app = Flask(__name__)
