@@ -39,9 +39,11 @@ def index():
 def login():
     user_cod = request.form['user_cod']
     password_cod = request.form['password_cod']
+    author = request.form['author']
 
     if user_cod == os.getenv('USER_COD') and password_cod == os.getenv('PASSWORD_COD'):
         session['logged_in'] = True
+        session['author'] = author
         return redirect(url_for('index'))
     else:
         flash('Неверный логин или пароль')
@@ -56,7 +58,7 @@ def submit_news():
     title = request.form['title'].strip()
     age_rating = request.form['age_rating'].strip()
     description = request.form['description'].strip().replace('  ', ' ')  # Удаление двойных пробелов
-    author = request.form['author'].strip()
+    author = session.get('author', '').strip()
     hashtags = request.form['hashtags'].strip()
 
     # Получение выбранных социальных сетей
@@ -168,6 +170,7 @@ def send_email(title, description, author, age_rating, hashtags, file_urls, fold
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
+    session.pop('author', None)
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
