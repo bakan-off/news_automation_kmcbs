@@ -280,6 +280,20 @@
         const theme = switchTheme.checked ? 'dark' : 'light';
         setTheme(theme);
     });
+
+    // Удаление двойных пробелов в поле описания
+    const descriptionField = document.getElementById('description');
+    descriptionField.addEventListener('input', () => {
+        descriptionField.value = descriptionField.value.replace(/\s{2,}/g, ' ');
+    });
+
+    descriptionField.addEventListener('paste', (event) => {
+        event.preventDefault();
+        const text = (event.clipboardData || window.clipboardData).getData('text');
+        const selectionStart = descriptionField.selectionStart;
+        const selectionEnd = descriptionField.selectionEnd;
+        descriptionField.setRangeText(text.replace(/\s{2,}/g, ' '), selectionStart, selectionEnd, 'end');
+    });
     </script>
 </body>
 </html>
