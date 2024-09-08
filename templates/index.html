@@ -22,6 +22,7 @@
         text-align: center;
         background: #f9f9f9;
         transition: background-color 0.3s, border-color 0.3s;
+        flex-grow: 1;
       }
 
       #filedrag.hover {
@@ -60,6 +61,25 @@
         width: 30px;
         height: 30px;
       }
+
+      .btn-lg {
+        font-size: 1.25rem;
+        padding: 0.75rem 1.25rem;
+      }
+
+      .file-upload-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .file-upload-container button {
+        flex-shrink: 0;
+      }
+
+      .invalid-feedback {
+        display: none;
+      }
     </style>
   </head>
 <body>
@@ -81,10 +101,10 @@
         {% if session['logged_in'] %}
           <div class="row justify-content-center">
             <div class="col-lg-8 col-md-10 col-sm-12">
-              <form action="/submit_news" method="post" enctype="multipart/form-data">
-                  <div class="mb-3">
-                      <label for="title" class="form-label">Название новости:</label>
-                      <input type="text" class="form-control" id="title" name="title" required>
+              <form id="newsForm" action="/submit_news" method="post" enctype="multipart/form-data" class="was-validated">
+                  <div class="form-floating mb-3">
+                      <input type="text" class="form-control" id="title" name="title" placeholder="Название" required>
+                      <label for="title">Название</label>
                   </div>
 
                   <div class="mb-3">
@@ -107,23 +127,24 @@
                       </div>
                   </div>
 
-                  <div class="mb-3">
-                      <label for="description" class="form-label">Описание:</label>
-                      <textarea class="form-control" id="description" name="description" rows="5" required></textarea>
+                  <div class="form-floating mb-3">
+                      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="description" style="min-height: 100px; overflow: hidden; resize: none;" required></textarea>
+                      <label for="floatingTextarea">Описание</label>
+                      <div class="invalid-feedback">
+                          
+                      </div>
                   </div>
 
-                  <div class="mb-3">
-                      <label for="hashtags" class="form-label">Хештеги:</label>
-                      <input type="text" class="form-control" id="hashtags" name="hashtags">
+                  <div class="form-floating mb-3">
+                      <input type="text" class="form-control" id="hashtags" name="hashtags" placeholder="Хештеги">
+                      <label for="hashtags">Хештеги</label>
                   </div>
 
-                  <div class="mb-3">
-                      <label for="file-upload" class="form-label">Выберите файлы</label>
-                      <input id="file-upload" type="file" class="form-control" name="files" multiple style="display: none;" onchange="updateFileList();"/>
-                      <button type="button" class="btn btn-primary" onclick="document.getElementById('file-upload').click();">Выбрать файлы</button>
+                  <div class="file-upload-container mb-3">
+                      <button type="button" class="btn btn-primary btn-lg" onclick="document.getElementById('file-upload').click();">Выбрать файлы</button>
+                      <div id="filedrag" class="mb-3">Или перетащите их сюда</div>
                   </div>
-
-                  <div id="filedrag" class="mb-3">Или перетащите их сюда</div>
+                  <input id="file-upload" type="file" class="form-control" name="files" multiple style="display: none;" onchange="updateFileList();"/>
                   <ul id="file-list" class="list-group mb-3"></ul>
                   <div class="mb-3">
                       <label for="social_media" class="form-label">Где публиковать новость:</label>
@@ -151,7 +172,12 @@
                       </ul>
                   </div>
 
-                  <button type="submit" class="btn btn-primary">Отправить</button>
+                  <div class="text-center">
+                      <button type="submit" class="btn btn-primary btn-lg" id="submitButton">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display: none;"></span>
+                        <span>Отправить</span>
+                      </button>
+                  </div>
               </form>
             </div>
           </div>
@@ -202,7 +228,6 @@
         <a href="/logout" class="btn btn-secondary w-100">Выход</a>
       </div>
     </div>
-
     <script>
     let filesArray = [];
 
@@ -298,7 +323,7 @@
     });
 
     // Удаление двойных пробелов в поле описания
-    const descriptionField = document.getElementById('description');
+    const descriptionField = document.getElementById('floatingTextarea');
     descriptionField.addEventListener('input', () => {
         descriptionField.value = descriptionField.value.replace(/\s{2,}/g, ' ');
     });
@@ -309,6 +334,38 @@
         const selectionStart = descriptionField.selectionStart;
         const selectionEnd = descriptionField.selectionEnd;
         descriptionField.setRangeText(text.replace(/\s{2,}/g, ' '), selectionStart, selectionEnd, 'end');
+        autoResize.call(descriptionField);
+    });
+
+    // Автоматическое изменение высоты текстового поля
+    function autoResize() {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const textarea = document.getElementById('floatingTextarea');
+
+        // Применяем функцию при вводе текста
+        textarea.addEventListener('input', autoResize);
+        textarea.addEventListener('paste', autoResize);
+
+        // Инициализация высоты при загрузке страницы
+        autoResize.call(textarea);
+    });
+
+    // Управление состоянием кнопки и спиннера при отправке формы
+    document.getElementById('newsForm').addEventListener('submit', function() {
+        const submitButton = document.getElementById('submitButton');
+        const spinner = submitButton.querySelector('.spinner-border');
+        const buttonText = submitButton.querySelector('span:last-child');
+
+        // Показываем спиннер и изменяем текст кнопки
+        spinner.style.display = 'inline-block';
+        buttonText.textContent = 'Загрузка...';
+
+        // Отключаем кнопку, чтобы предотвратить повторные отправки
+        submitButton.disabled = true;
     });
     </script>
 </body>
