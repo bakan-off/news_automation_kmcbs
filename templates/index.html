@@ -91,7 +91,7 @@
             <div class="alert alert-info success-message">
               <ul>
               {% for message in messages %}
-                <li>Новость подготовлена и отправлена на публикацию. Спасибо за вашу работу!</li>
+                <li>{{ message }}</li>
               {% endfor %}
               </ul>
             </div>
@@ -106,7 +106,6 @@
                       <input type="text" class="form-control" id="title" name="title" placeholder="Название" required>
                       <label for="title">Название</label>
                   </div>
-
                   <div class="mb-3">
                       <label for="age_rating" class="form-label">Возрастной ценз:</label>
                       <div class="btn-group" role="group" aria-label="Базовая группа переключателей радио">
@@ -131,13 +130,15 @@
                       <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="description" style="min-height: 100px; overflow: hidden; resize: none;" required></textarea>
                       <label for="floatingTextarea">Описание</label>
                       <div class="invalid-feedback">
-
                       </div>
                   </div>
 
                   <div class="form-floating mb-3">
-                      <input type="text" class="form-control" id="hashtags" name="hashtags" placeholder="Хештеги">
+                      <input type="text" class="form-control" id="hashtags" name="hashtags" placeholder="Хештеги" required>
                       <label for="hashtags">Хештеги</label>
+                      <div class="invalid-feedback">
+                          Пожалуйста, введите хештеги в правильном формате (например, #example #example2).
+                      </div>
                   </div>
 
                   <div class="file-upload-container mb-3">
@@ -383,6 +384,31 @@
 
         // Инициализация высоты при загрузке страницы
         autoResize.call(textarea);
+    });
+
+    // Валидация хештегов
+    const hashtagsField = document.getElementById('hashtags');
+    hashtagsField.addEventListener('input', () => {
+        const regex = /(^|\s)(#[a-zA-Z0-9_]+)(?=\s|$)/g;
+        const valid = hashtagsField.value.match(regex);
+        if (valid && valid.join(' ') === hashtagsField.value.trim()) {
+            hashtagsField.setCustomValidity('');
+        } else {
+            hashtagsField.setCustomValidity('Invalid');
+        }
+    });
+
+    hashtagsField.addEventListener('paste', (event) => {
+        event.preventDefault();
+        const text = (event.clipboardData || window.clipboardData).getData('text');
+        const regex = /(^|\s)(#[a-zA-Z0-9_]+)(?=\s|$)/g;
+        const valid = text.match(regex);
+        if (valid) {
+            hashtagsField.value = valid.join(' ');
+            hashtagsField.setCustomValidity('');
+        } else {
+            hashtagsField.setCustomValidity('Invalid');
+        }
     });
 
     // Управление состоянием кнопки и спиннера при отправке формы
