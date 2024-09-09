@@ -1,0 +1,5 @@
+2024-09-09 12:15:35,234:ERROR:Ошибка при загрузке файла Mate-latest-win.exe: No connection with https://webdav.cloud.mail.ru
+2024-09-09 14:43:56,122:ERROR:Ошибка при отправке письма: {'recipient-email@example.com': (550, b'non-local recipient verification failed')}
+2024-09-09 14:46:11,883:ERROR:Ошибка при отправке письма: {'recipient-email@example.com': (550, b'non-local recipient verification failed')}
+2024-09-09 14:49:59,769:ERROR:Ошибка при отправке письма: {}
+2024-09-09 15:56:55,961:ERROR:Ошибка при загрузке файла ABBYY.FineReader.PDF.15.v15.0.113.3886-full.exe: Request to https://webdav.cloud.mail.ru/09092024-154940/ABBYY.FineReader.PDF.15.v15.0.113.3886-full.exe failed with code 500 and message: b''

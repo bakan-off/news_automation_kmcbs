@@ -8,6 +8,8 @@ import tempfile
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
 
 # Настройка логирования с ротацией
 handler = RotatingFileHandler('error.log', maxBytes=1000000, backupCount=5)  # 1MB на файл, до 5 архивов
@@ -34,6 +36,10 @@ client = Client(data)
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/remote_request')
+def remote_request():
+    return render_template('remote_request.html')
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -75,6 +81,13 @@ def submit_news():
     file_urls = []
     files = request.files.getlist('files')
     print(f"Количество загруженных файлов: {len(files)}")  # Отладочный вывод
+
+    # Проверка общего размера файлов
+    total_size = sum(file.content_length for file in files)
+    if total_size > 1 * 1024 * 1024 * 1024:  # 1 Гб
+        flash('Общий размер файлов не должен превышать 1 Гб.')
+        return redirect(url_for('index'))
+
     for file in files:
         if file and file.content_length <= 1 * 1024 * 1024 * 1024:  # Проверка на размер <= 1 Гб
             # Обработка имени файла: замена пробелов на подчеркивания
@@ -87,6 +100,7 @@ def submit_news():
                 logging.info(f"Файл {safe_filename} успешно загружен в {folder_name}.")
             except Exception as e:
                 logging.error(f"Ошибка при загрузке файла {safe_filename}: {e}")
+                flash(f"Ошибка при загрузке файла {safe_filename}: {e}")
             finally:
                 # Удаляем временный файл после загрузки
                 try:
@@ -107,7 +121,7 @@ def send_email(title, description, author, age_rating, hashtags, file_urls, fold
     # Настройки почты
     sender_email = os.getenv('SENDER_EMAIL')
     sender_password = os.getenv('SENDER_PASSWORD')
-    receiver_email = 'muk_kmcbs_smi@mail.ru'  # Замените на адрес получателя
+    receiver_email = os.getenv('RECEIVER_EMAIL')  # Используем переменную окружения для получателя
 
     # Создаем сообщение
     msg = MIMEMultipart()
@@ -166,6 +180,68 @@ def send_email(title, description, author, age_rating, hashtags, file_urls, fold
             print("Письмо успешно отправлено")
     except Exception as e:
         logging.error(f"Ошибка при отправке письма: {e}")
+
+@app.route('/submit_remote_request', methods=['POST'])
+def submit_remote_request():
+    full_name = request.form['fullName']
+    phone = request.form['phone']
+    problem_option = request.form['problemOption']
+    problem_description = request.form.get('problemDescription', '')
+    remote_software = request.form['remoteSoftware']
+    access_option = request.form['accessOption']
+    access_data = request.form.get('accessData', '')
+    screenshot = request.files.get('screenshot')
+
+    # Формирование тела письма
+    problem_text = 'О проблеме расскажу по телефону при удаленном подключении' if problem_option == 'phone' else f'Описание проблемы: {problem_description}'
+    access_text = f'Данные для доступа: {access_data}' if access_option == 'provideData' else 'Скриншот для доступа прикреплен.'
+
+    subject = f"Запрос на удалённое подключение. {full_name} {phone}"
+    body = f"""
+    Имя: {full_name}
+    Телефон: {phone}
+
+    {problem_text}
+
+    Подключение через: {remote_software}
+
+    Доступ:
+    {access_text}
+    """
+
+    # Настройки почты
+    sender_email = os.getenv('SENDER_EMAIL')
+    sender_password = os.getenv('SENDER_PASSWORD')
+    receiver_email = os.getenv('RECEIVER_EMAIL')  # Используем переменную окружения для получателя
+
+    # Создаем сообщение
+    msg = MIMEMultipart()
+    msg['From'] = sender_email
+    msg['To'] = receiver_email
+    msg['Subject'] = subject
+    msg.attach(MIMEText(body, 'plain'))
+
+    # Прикрепление скриншота
+    if screenshot:
+        part = MIMEBase('application', 'octet-stream')
+        part.set_payload(screenshot.read())
+        encoders.encode_base64(part)
+        part.add_header('Content-Disposition', f'attachment; filename={screenshot.filename}')
+        msg.attach(part)
+
+    # Отправка письма через SMTP
+    try:
+        with smtplib.SMTP_SSL('smtp.mail.ru', 465) as server:
+            server.login(sender_email, sender_password)
+            server.send_message(msg)
+            print("Письмо успешно отправлено")
+    except Exception as e:
+        logging.error(f"Ошибка при отправке письма: {e}")
+        flash('Ошибка при отправке запроса. Пожалуйста, попробуйте позже.')
+        return redirect(url_for('remote_request'))
+
+    flash(f'{full_name}, подключение запланировано. Спасибо!')
+    return redirect(url_for('remote_request'))
 
 @app.route('/logout')
 def logout():
