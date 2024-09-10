@@ -83,6 +83,8 @@
 
       .hashtag-button {
         margin: 0.2em;
+        font-size: 0.875rem; /* Уменьшение размера кнопок */
+        padding: 0.5rem 0.75rem; /* Уменьшение отступов */
       }
 
       .hashtag-button.selected {
@@ -106,7 +108,6 @@
             </div>
           {% endif %}
         {% endwith %}
-
         {% if session['logged_in'] %}
           <div class="row justify-content-center">
             <div class="col-lg-8 col-md-10 col-sm-12">
@@ -160,6 +161,10 @@
                       <button type="button" class="btn btn-outline-primary hashtag-button" data-hashtag="#Юбилейные_истории">#Юбилейные_истории</button>
                       <button type="button" class="btn btn-outline-primary hashtag-button" data-hashtag="#БиблиоКаникулы">#БиблиоКаникулы</button>
                       <button type="button" class="btn btn-outline-primary hashtag-button" data-hashtag="#Онлайн_чтение_по_школьной_программе_ProЧтениУм">#Онлайн_чтение_по_школьной_программе_ProЧтениУм</button>
+                      <button type="button" class="btn btn-outline-primary hashtag-button" data-hashtag="#Литературная_гостиная">#Литературная_гостиная</button>
+                      <button type="button" class="btn btn-outline-primary hashtag-button" data-hashtag="#ЛетоВБиблиотеке">#ЛетоВБиблиотеке</button>
+                      <button type="button" class="btn btn-outline-primary hashtag-button" data-hashtag="#Телефон_доверия">#Телефон_доверия</button>
+                      <button type="button" class="btn btn-outline-primary hashtag-button" data-hashtag="#Финансовая_грамотность">#Финансовая_грамотность</button>
                   </div>
 
                   <div class="file-upload-container mb-3">
@@ -193,7 +198,6 @@
                           </li>
                       </ul>
                   </div>
-
                   <div class="text-center">
                       <button type="submit" class="btn btn-primary btn-lg" id="submitButton">
                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display: none;"></span>
