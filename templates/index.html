@@ -80,6 +80,15 @@
       .invalid-feedback {
         display: none;
       }
+
+      .hashtag-button {
+        margin: 0.2em;
+      }
+
+      .hashtag-button.selected {
+        background-color: #0d6efd;
+        color: white;
+      }
     </style>
   </head>
 <body>
@@ -137,8 +146,20 @@
                       <input type="text" class="form-control" id="hashtags" name="hashtags" placeholder="Хештеги" required>
                       <label for="hashtags">Хештеги</label>
                       <div class="invalid-feedback">
-                          Пожалуйста, введите хештеги в правильном формате (например, #example #example2).
+                          Пожалуйста, введите хештеги в правильном формате (например, #КМЦБС #Вбиблиотеке).
                       </div>
+                  </div>
+
+                  <div class="mb-3">
+                      <button type="button" class="btn btn-outline-primary hashtag-button" data-hashtag="#КМЦБС">#КМЦБС</button>
+                      <button type="button" class="btn btn-outline-primary hashtag-button" data-hashtag="#Вбиблиотеке">#Вбиблиотеке</button>
+                      <button type="button" class="btn btn-outline-primary hashtag-button" data-hashtag="#ДетиРулят86">#ДетиРулят86</button>
+                      <button type="button" class="btn btn-outline-primary hashtag-button" data-hashtag="#ДУХОВНАЯСТРАНИЧКА">#ДУХОВНАЯСТРАНИЧКА</button>
+                      <button type="button" class="btn btn-outline-primary hashtag-button" data-hashtag="#ЧтоПочитать">#ЧтоПочитать</button>
+                      <button type="button" class="btn btn-outline-primary hashtag-button" data-hashtag="#топ5книгЛитРес">#топ5книгЛитРес</button>
+                      <button type="button" class="btn btn-outline-primary hashtag-button" data-hashtag="#Юбилейные_истории">#Юбилейные_истории</button>
+                      <button type="button" class="btn btn-outline-primary hashtag-button" data-hashtag="#БиблиоКаникулы">#БиблиоКаникулы</button>
+                      <button type="button" class="btn btn-outline-primary hashtag-button" data-hashtag="#Онлайн_чтение_по_школьной_программе_ProЧтениУм">#Онлайн_чтение_по_школьной_программе_ProЧтениУм</button>
                   </div>
 
                   <div class="file-upload-container mb-3">
@@ -389,9 +410,9 @@
     // Валидация хештегов
     const hashtagsField = document.getElementById('hashtags');
     hashtagsField.addEventListener('input', () => {
-        const regex = /(^|\s)(#[a-zA-Z0-9_]+)(?=\s|$)/g;
+        const regex = /^(#(?<tag>[A-Za-zА-Яа-я0-9_]+)\s*){1,15}$/g;
         const valid = hashtagsField.value.match(regex);
-        if (valid && valid.join(' ') === hashtagsField.value.trim()) {
+        if (valid && valid[0] === hashtagsField.value.trim()) {
             hashtagsField.setCustomValidity('');
         } else {
             hashtagsField.setCustomValidity('Invalid');
@@ -401,10 +422,10 @@
     hashtagsField.addEventListener('paste', (event) => {
         event.preventDefault();
         const text = (event.clipboardData || window.clipboardData).getData('text');
-        const regex = /(^|\s)(#[a-zA-Z0-9_]+)(?=\s|$)/g;
+        const regex = /^(#(?<tag>[A-Za-zА-Яа-я0-9_]+)\s*){1,15}$/g;
         const valid = text.match(regex);
-        if (valid) {
-            hashtagsField.value = valid.join(' ');
+        if (valid && valid[0] === text.trim()) {
+            hashtagsField.value = valid[0];
             hashtagsField.setCustomValidity('');
         } else {
             hashtagsField.setCustomValidity('Invalid');
@@ -428,6 +449,35 @@
     // Обработка кнопки "Выход"
     document.getElementById('logoutButton').addEventListener('click', function() {
         window.location.href = '/logout';
+    });
+
+    // Сообщение об успешной отправке
+    const messages = document.querySelectorAll('.success-message ul li');
+    messages.forEach(message => {
+        if (message.textContent === 'Новости успешно отправлены!') {
+            message.textContent = '{{ session["author"] }}, новость отправлена. Спасибо за вашу работу!';
+        }
+    });
+
+    // Обработка кнопок хештегов
+    const hashtagButtons = document.querySelectorAll('.hashtag-button');
+    hashtagButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const hashtag = button.getAttribute('data-hashtag');
+            const hashtagsField = document.getElementById('hashtags');
+            let hashtags = hashtagsField.value.split(' ').filter(Boolean);
+
+            if (hashtags.includes(hashtag)) {
+                hashtags = hashtags.filter(tag => tag !== hashtag);
+                button.classList.remove('selected');
+            } else {
+                hashtags.push(hashtag);
+                button.classList.add('selected');
+            }
+
+            hashtagsField.value = hashtags.join(' ');
+            hashtagsField.dispatchEvent(new Event('input'));
+        });
     });
     </script>
 </body>

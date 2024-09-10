@@ -121,6 +121,7 @@
       <workItem from="1725634506334" duration="101000" />
       <workItem from="1725634731270" duration="40441000" />
       <workItem from="1725813696169" duration="30327000" />
+      <workItem from="1725995332670" duration="4767000" />
     </task>
     <servers />
   </component>
@@ -128,6 +129,6 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/news_automation_kmcbs$news_automation_kmcbs.coverage" NAME="news_automation_kmcbs Coverage Results" MODIFIED="1725894273144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/news_automation_kmcbs$news_automation_kmcbs.coverage" NAME="news_automation_kmcbs Coverage Results" MODIFIED="1725999752311" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
