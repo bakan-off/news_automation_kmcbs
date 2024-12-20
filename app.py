@@ -64,7 +64,7 @@ def submit_news():
     title = request.form['title'].strip()
     age_rating = request.form['age_rating'].strip()
     description = request.form['description'].strip().replace('  ', ' ')  # Удаление двойных пробелов
-    author = session.get('author', '').strip()
+    author = session.get('author', '').strip()  # Получаем имя автора из сессии
     hashtags = request.form['hashtags'].strip()
 
     # Получение выбранных социальных сетей
@@ -88,6 +88,9 @@ def submit_news():
         flash('Общий размер файлов не должен превышать 1 Гб.')
         return redirect(url_for('index'))
 
+    # Список для хранения миниатюр
+    thumbnails = []
+
     for file in files:
         if file and file.content_length <= 1 * 1024 * 1024 * 1024:  # Проверка на размер <= 1 Гб
             # Обработка имени файла: замена пробелов на подчеркивания
@@ -97,6 +100,7 @@ def submit_news():
             try:
                 client.upload_sync(remote_path=f"{folder_name}/{safe_filename}", local_path=temp_file_path)
                 file_urls.append(f"https://webdav.cloud.mail.ru/{folder_name}/{safe_filename}")
+                thumbnails.append(f"https://webdav.cloud.mail.ru/{folder_name}/{safe_filename}")  # Добавляем URL для миниатюры
                 logging.info(f"Файл {safe_filename} успешно загружен в {folder_name}.")
             except Exception as e:
                 logging.error(f"Ошибка при загрузке файла {safe_filename}: {e}")
@@ -114,7 +118,8 @@ def submit_news():
     except Exception as e:
         logging.error(f"Ошибка при отправке письма: {e}")
 
-    flash('Новости успешно отправлены!')
+    # Изменяем сообщение об успешной отправке
+    flash(f"{author}, новость отправлена. Спасибо за вашу работу!")
     return redirect(url_for('index'))
 
 def send_email(title, description, author, age_rating, hashtags, file_urls, folder_name, social_media):
@@ -242,6 +247,12 @@ def submit_remote_request():
 
     flash(f'{full_name}, подключение запланировано. Спасибо!')
     return redirect(url_for('remote_request'))
+
+@app.route('/delete_file', methods=['POST'])
+def delete_file():
+    # Эта функция не нужна, так как удаление файлов будет происходить на стороне клиента
+    # Мы будем управлять массивом файлов в JavaScript
+    pass
 
 @app.route('/logout')
 def logout():

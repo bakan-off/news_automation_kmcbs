@@ -91,6 +91,58 @@
         background-color: #0d6efd;
         color: white;
       }
+
+      /* Стили для контейнера с миниатюрами */
+      .file-list-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px; /* Отступы между миниатюрами */
+          margin-top: 1em; /* Отступ сверху */
+      }
+
+      /* Стили для миниатюры файла */
+      .file-item {
+          position: relative;
+      }
+
+      .file-thumbnail {
+          width: 100px; /* Ширина миниатюры */
+          height: 100px; /* Высота миниатюры */
+          display: flex; /* Используем flex для центрирования */
+          align-items: center; /* Центрируем по вертикали */
+          justify-content: center; /* Центрируем по горизонтали */
+          border: 1px solid #ccc; /* Граница для миниатюры */
+          border-radius: 5px; /* Закругленные углы */
+          overflow: hidden; /* Скрываем переполнение */
+      }
+
+      .file-thumbnail img,
+      .file-thumbnail svg {
+          width: 100%; /* Занимаем всю ширину миниатюры */
+          height: 100%; /* Занимаем всю высоту миниатюры */
+          object-fit: cover; /* Сохраняем пропорции и заполняем миниатюру */
+      }
+      /* Стили для кнопки удаления */
+      .file-item button {
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          background-color: #ff4d4d; /* Красный цвет для кнопки удаления */
+          color: white; /* Белый текст */
+          border: none; /* Без границы */
+          border-radius: 5px; /* Закругленные углы */
+          cursor: pointer; /* Указатель при наведении */
+      }
+
+      .file-item button:hover {
+          background-color: #ff1a1a; /* Темнее при наведении */
+      }
+
+      .file-name {
+          text-align: center; /* Центрируем текст с именем файла */
+          margin-top: 5px; /* Отступ сверху */
+          font-size: 0.9em; /* Размер шрифта для имени файла */
+      }
     </style>
   </head>
 <body>
@@ -135,14 +187,12 @@
                           <label class="btn btn-outline-primary" for="btnradio5">18+</label>
                       </div>
                   </div>
-
                   <div class="form-floating mb-3">
                       <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="description" style="min-height: 100px; overflow: hidden; resize: none;" required></textarea>
                       <label for="floatingTextarea">Описание</label>
                       <div class="invalid-feedback">
                       </div>
                   </div>
-
                   <div class="form-floating mb-3">
                       <input type="text" class="form-control" id="hashtags" name="hashtags" placeholder="Хештеги" required>
                       <label for="hashtags">Хештеги</label>
@@ -166,7 +216,6 @@
                       <button type="button" class="btn btn-outline-primary hashtag-button" data-hashtag="#Телефон_доверия">#Телефон_доверия</button>
                       <button type="button" class="btn btn-outline-primary hashtag-button" data-hashtag="#Финансовая_грамотность">#Финансовая_грамотность</button>
                   </div>
-
                   <div class="file-upload-container mb-3">
                       <button type="button" class="btn btn-primary btn-lg" onclick="document.getElementById('file-upload').click();">Выбрать файлы</button>
                       <div id="filedrag" class="mb-3">Или перетащите их сюда</div>
@@ -192,10 +241,6 @@
                               <input class="form-check-input me-1" type="checkbox" name="social_media" value="Telegram" id="fourthCheckbox" checked>
                               <label class="form-check-label" for="fourthCheckbox">Telegram</label>
                           </li>
-                          <li class="list-group-item">
-                              <input class="form-check-input me-1" type="checkbox" name="social_media" disabled value="Viber" id="fifthCheckbox">
-                              <label class="form-check-label" for="fifthCheckbox">Viber</label>
-                          </li>
                       </ul>
                   </div>
                   <div class="text-center">
@@ -207,78 +252,76 @@
               </form>
             </div>
           </div>
+    <!-- Кнопка для открытия модального окна -->
+    <button class="settings-button" type="button" data-bs-toggle="modal" data-bs-target="#settingsModal">
+        <img src="https://img.icons8.com/ios-filled/50/000000/settings.png" alt="Настройки">
+    </button>
+    {% else %}
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-12">
+            <h2 class="text-center">Авторизация</h2>
+            <form action="/login" method="post">
+                <div class="mb-3">
+                    <label for="user_cod" class="form-label">Логин:</label>
+                    <input type="text" class="form-control" id="user_cod" name="user_cod" required>
+                </div>
 
-          <!-- Кнопка для открытия модального окна -->
-          <button class="settings-button" type="button" data-bs-toggle="modal" data-bs-target="#settingsModal">
-            <img src="https://img.icons8.com/ios-filled/50/000000/settings.png" alt="Настройки">
-          </button>
-        {% else %}
-          <div class="row justify-content-center">
-            <div class="col-lg-6 col-md-8 col-sm-12">
-              <h2 class="text-center">Авторизация</h2>
-              <form action="/login" method="post">
-                  <div class="mb-3">
-                      <label for="user_cod" class="form-label">Логин:</label>
-                      <input type="text" class="form-control" id="user_cod" name="user_cod" required>
-                  </div>
+                <div class="mb-3">
+                    <label for="password_cod" class="form-label">Пароль:</label>
+                    <input type="password" class="form-control" id="password_cod" name="password_cod" required>
+                </div>
 
-                  <div class="mb-3">
-                      <label for="password_cod" class="form-label">Пароль:</label>
-                      <input type="password" class="form-control" id="password_cod" name="password_cod" required>
-                  </div>
+                <div class="mb-3">
+                    <label for="author" class="form-label">Автор или библиотека:</label>
+                    <input type="text" class="form-control" id="author" name="author" required>
+                </div>
 
-                  <div class="mb-3">
-                      <label for="author" class="form-label">Автор или библиотека:</label>
-                      <input type="text" class="form-control" id="author" name="author" required>
-                  </div>
-
-                  <button type="submit" class="btn btn-primary">Войти</button>
-              </form>
-            </div>
-          </div>
-        {% endif %}
-    </div>
-    <!-- Модальное окно для настроек -->
-    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="settingsModalLabel">Настройки</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="themeSwitch">
-              <label class="form-check-label" for="themeSwitch">День / Ночь</label>
-            </div>
-            <div class="mt-3">
-              <h6>Выбор формы:</h6>
-              <a href="/" class="btn btn-primary w-100 mb-2">Отправка новостей</a>
-              <a href="/remote_request" class="btn btn-secondary w-100">Запрос на удаленное подключение</a>
-            </div>
-            <div class="mt-3">
-              <h6>Все новости МУК Кондинская МЦБС публикуются тут:</h6>
-              <ul>
-                <li><a href="http://мцбс-конда.рф" target="_blank">МЦБС-Конда.рф</a></li>
-                <li><a href="https://vk.com/mukmcbs" target="_blank">Вконтакте</a></li>
-                <li><a href="https://ok.ru/mukmcbs" target="_blank">Одноклассники</a></li>
-                <li><a href="https://t.me/mukkmcbs" target="_blank">Telegram</a></li>
-              </ul>
-            </div>
-            <div class="mt-3">
-              <h6>Полезные ссылки:</h6>
-              <ul>
-                <li><a href="https://ai-muk-kmcbs.zapier.app" target="_blank">Бот МУК Кондинская МЦБС</a></li>
-              </ul>
-            </div>
-            <div class="mt-3">
-              <button type="button" class="btn btn-danger w-100" id="logoutButton">Выход</button>
-            </div>
-          </div>
+                <button type="submit" class="btn btn-primary">Войти</button>
+            </form>
         </div>
-      </div>
     </div>
-
+    {% endif %}
+</div>
+<!-- Модальное окно для настроек -->
+<div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="settingsModalLabel">Настройки</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="themeSwitch">
+                    <label class="form-check-label" for="themeSwitch">День / Ночь</label>
+                </div>
+                <div class="mt-3">
+                    <h6>Выбор формы:</h6>
+                    <a href="/" class="btn btn-primary w-100 mb-2">Отправка новостей</a>
+                    <a href="/remote_request" class="btn btn-secondary w-100">Запрос на удаленное подключение</a>
+                </div>
+                <div class="mt-3">
+                    <h6>Все новости МУК Кондинская МЦБС публикуются тут:</h6>
+                    <ul>
+                        <li><a href="http://мцбс-конда.рф" target="_blank">МЦБС-Конда.рф</a></li>
+                        <li><a href="https://vk.com/mukmcbs" target="_blank">Вконтакте</a></li>
+                        <li><a href="https://ok.ru/mukmcbs" target="_blank">Одноклассники</a></li>
+                        <li><a href="https://t.me/mukkmcbs" target="_blank">Telegram</a></li>
+                    </ul>
+                </div>
+                <div class="mt-3">
+                    <h6>Полезные ссылки:</h6>
+                    <ul>
+                        <li><a href="https://ai-muk-kmcbs.zapier.app" target="_blank">Бот МУК Кондинская МЦБС</a></li>
+                    </ul>
+                </div>
+                <div class="mt-3">
+                    <button type="button" class="btn btn-danger w-100" id="logoutButton">Выход</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     <script>
     let filesArray = [];
     const MAX_TOTAL_SIZE = 500 * 1024 * 1024; // 500 Мб
@@ -355,13 +398,47 @@
         const fileList = $id('file-list');
         fileList.innerHTML = ''; // Очистить предыдущий список файлов
 
-        filesArray.forEach(file => {
+        filesArray.forEach((file, index) => {
             const li = document.createElement('li');
-            li.textContent = file.name; // Отобразить имя файла
-            li.classList.add('list-group-item');
+            li.classList.add('file-item', 'list-group-item');
+
+            // Создание миниатюры
+            const img = document.createElement('div');
+            img.classList.add('file-thumbnail');
+            img.alt = file.name;
+
+            // Проверка типа файла для отображения соответствующей миниатюры
+            if (file.type.startsWith('image/')) {
+                img.innerHTML = `<img src="${URL.createObjectURL(file)}" alt="${file.name}">`;
+            } else if (file.type.startsWith('video/')) {
+                img.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M0 128C0 92.7 28.7 64 64 64l256 0c35.3 0 64 28.7 64 64l0 256c0 35.3-28.7 64-64 64L64 448c-35.3 0-64-28.7-64-64L0 128zM559.1 99.8c10.4 5.6 16.9 16.4 16.9 28.2l0 256c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64L416 337.1l0-17.1 0-128 0-17.1 14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z"/></svg>`;
+            } else if (file.type === 'application/pdf') {
+                img.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 144-208 0c-35.3 0-64 28.7-64 64l0 144-48 0c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z"/></svg>`;
+            } else {
+                img.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 288c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128z"/></svg>`; // Иконка для других файлов
+            }
+
+            // Имя файла
+            const fileName = document.createElement('div');
+            fileName.classList.add('file-name');
+            fileName.textContent = file.name;
+
+            // Кнопка удаления
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Удалить';
+            removeButton.classList.add('btn', 'btn-danger', 'btn-sm');
+            removeButton.onclick = () => {
+                filesArray.splice(index, 1); // Удаляем файл из массива
+                updateFileList(); // Обновляем список
+            };
+
+            li.appendChild(img);
+            li.appendChild(fileName); // Добавляем имя файла
+            li.appendChild(removeButton);
             fileList.appendChild(li);
         });
     }
+
     // Код для переключения темы
     const switchTheme = document.getElementById('themeSwitch');
     const setTheme = (theme) => {
@@ -436,6 +513,26 @@
         }
     });
 
+    // Обработка нажатий на кнопки хештегов
+    const hashtagButtons = document.querySelectorAll('.hashtag-button');
+    hashtagButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const hashtag = button.getAttribute('data-hashtag');
+            const currentHashtags = hashtagsField.value.trim();
+
+            // Проверяем, есть ли уже этот хештег в поле
+            if (!currentHashtags.includes(hashtag)) {
+                // Добавляем хештег в поле
+                hashtagsField.value += (currentHashtags ? ' ' : '') + hashtag;
+                button.classList.toggle('selected'); // Меняем стиль кнопки
+            } else {
+                // Удаляем хештег из поля
+                hashtagsField.value = currentHashtags.split(' ').filter(h => h !== hashtag).join(' ');
+                button.classList.remove('selected'); // Убираем стиль кнопки
+            }
+        });
+    });
+
     // Управление состоянием кнопки и спиннера при отправке формы
     document.getElementById('newsForm').addEventListener('submit', function() {
         const submitButton = document.getElementById('submitButton');
@@ -458,29 +555,8 @@
     // Сообщение об успешной отправке
     const messages = document.querySelectorAll('.success-message ul li');
     messages.forEach(message => {
-        if (message.textContent === 'Новости успешно отправлены!') {
-            message.textContent = '{{ session["author"] }}, новость отправлена. Спасибо за вашу работу!';
-        }
-    });
-
-    // Обработка кнопок хештегов
-    const hashtagButtons = document.querySelectorAll('.hashtag-button');
-    hashtagButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const hashtag = button.getAttribute('data-hashtag');
-            const hashtagsField = document.getElementById('hashtags');
-            let hashtags = hashtagsField.value.split(' ').filter(Boolean);
-
-            if (hashtags.includes(hashtag)) {
-                hashtags = hashtags.filter(tag => tag !== hashtag);
-                button.classList.remove('selected');
-            } else {
-                hashtags.push(hashtag);
-                button.classList.add('selected');
-            }
-
-            hashtagsField.value = hashtags.join(' ');
-            hashtagsField.dispatchEvent(new Event('input'));
+        message.addEventListener('click', () => {
+            message.remove();
         });
     });
     </script>

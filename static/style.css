@@ -27,3 +27,50 @@
     border-style: solid;
     box-shadow: 0 3px 4px #dbdbdb inset;
 }
+
+/* Стили для контейнера с миниатюрами */
+.file-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Отступы между миниатюрами */
+    margin-top: 1em; /* Отступ сверху */
+}
+
+/* Стили для миниатюры файла */
+.file-item {
+    position: relative;
+}
+
+.file-thumbnail {
+    width: 100px; /* Ширина миниатюры */
+    height: 100px; /* Высота миниатюры */
+    display: flex; /* Используем flex для центрирования */
+    align-items: center; /* Центрируем по вертикали */
+    justify-content: center; /* Центрируем по горизонтали */
+    border: 1px solid #ccc; /* Граница для миниатюры */
+    border-radius: 5px; /* Закругленные углы */
+    overflow: hidden; /* Скрываем переполнение */
+}
+
+.file-thumbnail img,
+.file-thumbnail svg {
+    width: 50px; /* Установите желаемую ширину */
+    height: 50px; /* Установите желаемую высоту */
+    object-fit: contain; /* Сохраняем пропорции */
+}
+
+/* Стили для кнопки удаления */
+.file-item button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #ff4d4d; /* Красный цвет для кнопки удаления */
+    color: white; /* Белый текст */
+    border: none; /* Без границы */
+    border-radius: 5px; /* Закругленные углы */
+    cursor: pointer; /* Указатель при наведении */
+}
+
+.file-item button:hover {
+    background-color: #ff1a1a; /* Темнее при наведении */
+}
