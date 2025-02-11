@@ -428,9 +428,13 @@
             removeButton.textContent = 'Удалить';
             removeButton.classList.add('btn', 'btn-danger', 'btn-sm');
             removeButton.onclick = () => {
-                filesArray.splice(index, 1); // Удаляем файл из массива
-                updateFileList(); // Обновляем список
+            filesArray.splice(index, 1); // Удаляем файл из массива
+            const dataTransfer = new DataTransfer();
+             filesArray.forEach(f => dataTransfer.items.add(f));
+            $id('file-upload').files = dataTransfer.files; // Обновляем input.files
+            updateFileList(); // Обновляем список
             };
+
 
             li.appendChild(img);
             li.appendChild(fileName); // Добавляем имя файла
