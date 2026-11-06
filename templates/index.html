@@ -3,6 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+      (function() {
+        const storedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-bs-theme', storedTheme);
+      })();
+    </script>
     <!-- Bootstrap is served locally so the application does not depend on jsDelivr. -->
     <link href="{{ url_for('static', filename='vendor/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
     <title>Публикация новостей</title>
@@ -188,7 +194,7 @@
                       </div>
                   </div>
                   <div class="form-floating mb-3">
-                      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="description" style="min-height: 100px; overflow: hidden; resize: none;" required></textarea>
+                      <textarea class="form-control" placeholder="Текст новости" id="floatingTextarea" name="description" style="min-height: 140px; resize: vertical;" required></textarea>
                       <label for="floatingTextarea">Описание</label>
                       <div class="invalid-feedback">
                       </div>
@@ -454,95 +460,102 @@
         localStorage.setItem('theme', theme);
     };
 
-    // Установка темы при загрузке страницы
+    // Установка состояния переключателя при загрузке страницы
     const storedTheme = localStorage.getItem('theme') || 'dark';
-    setTheme(storedTheme);
-    switchTheme.checked = storedTheme === 'dark';
-
-    switchTheme.addEventListener('change', () => {
-        const theme = switchTheme.checked ? 'dark' : 'light';
-        setTheme(theme);
-    });
-
-    // Удаление двойных пробелов в поле описания
-    const descriptionField = document.getElementById('floatingTextarea');
-    descriptionField.addEventListener('input', () => {
-        descriptionField.value = descriptionField.value.replace(/\s{2,}/g, ' ');
-    });
-
-    descriptionField.addEventListener('paste', (event) => {
-        event.preventDefault();
-        const text = (event.clipboardData || window.clipboardData).getData('text');
-        const selectionStart = descriptionField.selectionStart;
-        const selectionEnd = descriptionField.selectionEnd;
-        descriptionField.setRangeText(text.replace(/\s{2,}/g, ' '), selectionStart, selectionEnd, 'end');
-        autoResize.call(descriptionField);
-    });
-
-    // Автоматическое изменение высоты текстового поля
-    function autoResize() {
-        this.style.height = 'auto';
-        this.style.height = (this.scrollHeight) + 'px';
+    if (switchTheme) {
+        switchTheme.checked = storedTheme === 'dark';
+        switchTheme.addEventListener('change', () => {
+            const theme = switchTheme.checked ? 'dark' : 'light';
+            setTheme(theme);
+        });
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const textarea = document.getElementById('floatingTextarea');
+    // Автоматическое изменение высоты текстового поля описания
+    function autoResize() {
+        if (!this) return;
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight + 5) + 'px';
+    }
 
-        if (!textarea) {
-            return;
-        }
+    const descriptionField = document.getElementById('floatingTextarea');
+    if (descriptionField) {
+        descriptionField.addEventListener('input', autoResize);
+        // При вставке сохраняем все переносы строк и абзацы пользователя, затем адаптируем высоту
+        descriptionField.addEventListener('paste', () => {
+            setTimeout(() => {
+                autoResize.call(descriptionField);
+            }, 0);
+        });
+        // Инициализация начальной высоты
+        autoResize.call(descriptionField);
+    }
 
-        // Применяем функцию при вводе текста
-        textarea.addEventListener('input', autoResize);
-        textarea.addEventListener('paste', autoResize);
-
-        // Инициализация высоты при загрузке страницы
-        autoResize.call(textarea);
-    });
-
-    // Валидация хештегов
+    // Валидация и синхронизация хештегов
     const hashtagsField = document.getElementById('hashtags');
     const hashtagButtons = document.querySelectorAll('.hashtag-button');
     if (hashtagsField) {
-        hashtagsField.addEventListener('input', () => {
-            const regex = /^(#(?<tag>[A-Za-zА-Яа-я0-9_]+)\s*){1,15}$/g;
-            const valid = hashtagsField.value.match(regex);
-            if (valid && valid[0] === hashtagsField.value.trim()) {
+        const validateHashtags = () => {
+            const val = hashtagsField.value.trim();
+            if (!val) {
+                hashtagsField.setCustomValidity('');
+                return;
+            }
+            const regex = /^(#(?<tag>[A-Za-zА-Яа-я0-9_]+)\s*){1,15}$/;
+            if (regex.test(val)) {
                 hashtagsField.setCustomValidity('');
             } else {
                 hashtagsField.setCustomValidity('Invalid');
             }
+        };
+
+        const syncHashtagButtons = () => {
+            const currentTokens = hashtagsField.value.trim().split(/\s+/).filter(Boolean);
+            hashtagButtons.forEach(button => {
+                const hashtag = button.getAttribute('data-hashtag');
+                if (currentTokens.includes(hashtag)) {
+                    button.classList.add('selected');
+                } else {
+                    button.classList.remove('selected');
+                }
+            });
+        };
+
+        hashtagsField.addEventListener('input', () => {
+            validateHashtags();
+            syncHashtagButtons();
         });
 
-        hashtagsField.addEventListener('paste', (event) => {
-            event.preventDefault();
-            const text = (event.clipboardData || window.clipboardData).getData('text');
-            const regex = /^(#(?<tag>[A-Za-zА-Яа-я0-9_]+)\s*){1,15}$/g;
-            const valid = text.match(regex);
-            if (valid && valid[0] === text.trim()) {
-                hashtagsField.value = valid[0];
-                hashtagsField.setCustomValidity('');
-            } else {
-                hashtagsField.setCustomValidity('Invalid');
-            }
+        hashtagsField.addEventListener('paste', () => {
+            setTimeout(() => {
+                validateHashtags();
+                syncHashtagButtons();
+            }, 0);
         });
 
         // Обработка нажатий на кнопки хештегов
         hashtagButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const hashtag = button.getAttribute('data-hashtag');
-                const currentHashtags = hashtagsField.value.trim();
+                let currentTokens = hashtagsField.value.trim().split(/\s+/).filter(Boolean);
 
-                // Проверяем, есть ли уже этот хештег в поле
-                if (!currentHashtags.includes(hashtag)) {
-                    hashtagsField.value += (currentHashtags ? ' ' : '') + hashtag;
-                    button.classList.toggle('selected');
+                const index = currentTokens.indexOf(hashtag);
+                if (index === -1) {
+                    currentTokens.push(hashtag);
                 } else {
-                    hashtagsField.value = currentHashtags.split(' ').filter(h => h !== hashtag).join(' ');
-                    button.classList.remove('selected');
+                    currentTokens.splice(index, 1);
                 }
+
+                hashtagsField.value = currentTokens.join(' ');
+                validateHashtags();
+                syncHashtagButtons();
             });
         });
+
+        // Первичная проверка при загрузке
+        if (hashtagsField.value) {
+            validateHashtags();
+            syncHashtagButtons();
+        }
     }
 
     // Управление состоянием кнопки и спиннера при отправке формы

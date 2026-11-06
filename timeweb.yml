@@ -3,6 +3,6 @@ version: '1.0'
 services:
   web:
     build: .
-    command: gunicorn --bind 0.0.0.0:8000 app:app
+    command: gunicorn --bind 0.0.0.0:8000 --timeout 300 --workers 2 app:app
     ports:
       - "8000:8000"
