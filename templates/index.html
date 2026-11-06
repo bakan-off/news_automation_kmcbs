@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <!-- Bootstrap is served locally so the application does not depend on jsDelivr. -->
+    <link href="{{ url_for('static', filename='vendor/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
     <title>Публикация новостей</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap/bootstrap.bundle.min.js') }}"></script>
     <style>
       body {
         transition: background-color 0.5s, color 0.5s;
@@ -254,7 +254,7 @@
           </div>
     <!-- Кнопка для открытия модального окна -->
     <button class="settings-button" type="button" data-bs-toggle="modal" data-bs-target="#settingsModal">
-        <img src="https://img.icons8.com/ios-filled/50/000000/settings.png" alt="Настройки">
+        <span aria-hidden="true">⚙️</span><span class="visually-hidden">Настройки</span>
     </button>
     {% else %}
     <div class="row justify-content-center">
@@ -342,6 +342,10 @@
     function Init() {
         const fileselect = $id("file-upload");
         const filedrag = $id("filedrag");
+
+        if (!fileselect || !filedrag) {
+            return;
+        }
 
         fileselect.addEventListener("change", FileSelectHandler, false);
         filedrag.addEventListener("dragover", FileDragHover, false);
@@ -484,6 +488,10 @@
     document.addEventListener('DOMContentLoaded', function() {
         const textarea = document.getElementById('floatingTextarea');
 
+        if (!textarea) {
+            return;
+        }
+
         // Применяем функцию при вводе текста
         textarea.addEventListener('input', autoResize);
         textarea.addEventListener('paste', autoResize);
@@ -494,51 +502,53 @@
 
     // Валидация хештегов
     const hashtagsField = document.getElementById('hashtags');
-    hashtagsField.addEventListener('input', () => {
-        const regex = /^(#(?<tag>[A-Za-zА-Яа-я0-9_]+)\s*){1,15}$/g;
-        const valid = hashtagsField.value.match(regex);
-        if (valid && valid[0] === hashtagsField.value.trim()) {
-            hashtagsField.setCustomValidity('');
-        } else {
-            hashtagsField.setCustomValidity('Invalid');
-        }
-    });
-
-    hashtagsField.addEventListener('paste', (event) => {
-        event.preventDefault();
-        const text = (event.clipboardData || window.clipboardData).getData('text');
-        const regex = /^(#(?<tag>[A-Za-zА-Яа-я0-9_]+)\s*){1,15}$/g;
-        const valid = text.match(regex);
-        if (valid && valid[0] === text.trim()) {
-            hashtagsField.value = valid[0];
-            hashtagsField.setCustomValidity('');
-        } else {
-            hashtagsField.setCustomValidity('Invalid');
-        }
-    });
-
-    // Обработка нажатий на кнопки хештегов
     const hashtagButtons = document.querySelectorAll('.hashtag-button');
-    hashtagButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const hashtag = button.getAttribute('data-hashtag');
-            const currentHashtags = hashtagsField.value.trim();
-
-            // Проверяем, есть ли уже этот хештег в поле
-            if (!currentHashtags.includes(hashtag)) {
-                // Добавляем хештег в поле
-                hashtagsField.value += (currentHashtags ? ' ' : '') + hashtag;
-                button.classList.toggle('selected'); // Меняем стиль кнопки
+    if (hashtagsField) {
+        hashtagsField.addEventListener('input', () => {
+            const regex = /^(#(?<tag>[A-Za-zА-Яа-я0-9_]+)\s*){1,15}$/g;
+            const valid = hashtagsField.value.match(regex);
+            if (valid && valid[0] === hashtagsField.value.trim()) {
+                hashtagsField.setCustomValidity('');
             } else {
-                // Удаляем хештег из поля
-                hashtagsField.value = currentHashtags.split(' ').filter(h => h !== hashtag).join(' ');
-                button.classList.remove('selected'); // Убираем стиль кнопки
+                hashtagsField.setCustomValidity('Invalid');
             }
         });
-    });
+
+        hashtagsField.addEventListener('paste', (event) => {
+            event.preventDefault();
+            const text = (event.clipboardData || window.clipboardData).getData('text');
+            const regex = /^(#(?<tag>[A-Za-zА-Яа-я0-9_]+)\s*){1,15}$/g;
+            const valid = text.match(regex);
+            if (valid && valid[0] === text.trim()) {
+                hashtagsField.value = valid[0];
+                hashtagsField.setCustomValidity('');
+            } else {
+                hashtagsField.setCustomValidity('Invalid');
+            }
+        });
+
+        // Обработка нажатий на кнопки хештегов
+        hashtagButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const hashtag = button.getAttribute('data-hashtag');
+                const currentHashtags = hashtagsField.value.trim();
+
+                // Проверяем, есть ли уже этот хештег в поле
+                if (!currentHashtags.includes(hashtag)) {
+                    hashtagsField.value += (currentHashtags ? ' ' : '') + hashtag;
+                    button.classList.toggle('selected');
+                } else {
+                    hashtagsField.value = currentHashtags.split(' ').filter(h => h !== hashtag).join(' ');
+                    button.classList.remove('selected');
+                }
+            });
+        });
+    }
 
     // Управление состоянием кнопки и спиннера при отправке формы
-    document.getElementById('newsForm').addEventListener('submit', function() {
+    const newsForm = document.getElementById('newsForm');
+    if (newsForm) {
+      newsForm.addEventListener('submit', function() {
         const submitButton = document.getElementById('submitButton');
         const spinner = submitButton.querySelector('.spinner-border');
         const buttonText = submitButton.querySelector('span:last-child');
@@ -549,12 +559,16 @@
 
         // Отключаем кнопку, чтобы предотвратить повторные отправки
         submitButton.disabled = true;
-    });
+      });
+    }
 
     // Обработка кнопки "Выход"
-    document.getElementById('logoutButton').addEventListener('click', function() {
-        window.location.href = '/logout';
-    });
+    const logoutButton = document.getElementById('logoutButton');
+    if (logoutButton) {
+      logoutButton.addEventListener('click', function() {
+          window.location.href = '/logout';
+      });
+    }
 
     // Сообщение об успешной отправке
     const messages = document.querySelectorAll('.success-message ul li');
