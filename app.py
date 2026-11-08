@@ -99,7 +99,9 @@ def submit_news():
     # Очищаем только лишние горизонтальные пробелы в строках, сохраняя все переносы строк и абзацы
     description = re.sub(r'[^\S\r\n]{2,}', ' ', raw_desc).strip()
     author = session.get('author', '').strip()
-    hashtags = request.form.get('hashtags', '').strip()
+    raw_hashtags = request.form.get('hashtags', '').strip()
+    # Автоматически разделяем слитные хештеги пробелами (#тег1#тег2 -> #тег1 #тег2)
+    hashtags = re.sub(r'\s+', ' ', re.sub(r'(?<!^)(?<!\s)#', ' #', raw_hashtags)).strip()
 
     social_media = request.form.getlist('social_media')
     logging.info(f"Выбранные социальные сети: {social_media}")
@@ -121,8 +123,17 @@ def submit_news():
 
         # Изолированная временная директория для безопасной параллельной загрузки
         with tempfile.TemporaryDirectory() as temp_dir:
+            used_filenames = set()
             for file in files:
-                safe_filename = sanitize_filename(file.filename)
+                base_safe_name = sanitize_filename(file.filename)
+                safe_filename = base_safe_name
+                counter = 1
+                while safe_filename in used_filenames:
+                    name_part, ext_part = os.path.splitext(base_safe_name)
+                    safe_filename = f"{name_part}_{counter}{ext_part}"
+                    counter += 1
+                used_filenames.add(safe_filename)
+
                 temp_file_path = os.path.join(temp_dir, safe_filename)
                 file.save(temp_file_path)
                 try:
@@ -146,7 +157,7 @@ def submit_news():
             flash(err)
         flash(f"{author}, новость отправлена, но часть файлов не удалось загрузить.")
     else:
-        flash(f"{author}, новость успешно отправлена. Спасибо за вашу работу!")
+        flash(f"{author}, новость отправлена. Спасибо за вашу работу!")
 
     return redirect(url_for('index'))
 
@@ -172,55 +183,49 @@ def send_email(title, description, author, age_rating, hashtags, file_urls, fold
     for media in social_media:
         if media in links:
             safe_media = html.escape(media)
-            buttons_html += f'<a href="{links[media]}" style="display: inline-block; margin: 5px; padding: 10px 20px; background-color: #0d6efd; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">{safe_media}</a>'
+            buttons_html += f'<a href="{links[media]}" style="display: inline-block; margin: 5px; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">{safe_media}</a>'
 
     safe_title = html.escape(title)
     safe_author = html.escape(author)
     safe_age_rating = html.escape(age_rating)
-    safe_hashtags = html.escape(hashtags)
+    normalized_hashtags = re.sub(r'\s+', ' ', re.sub(r'(?<!^)(?<!\s)#', ' #', hashtags)).strip()
+    safe_hashtags = html.escape(normalized_hashtags)
 
-    # Сохраняем структуру абзацев и переносов:
-    # 1. Экранируем спецсимволы HTML
-    # 2. Преобразуем переносы строк в <br>\n
-    # 3. Оборачиваем в блок с white-space: pre-wrap для 100% совместимости с любыми почтовыми клиентами
-    escaped_desc = html.escape(description)
-    formatted_desc = escaped_desc.replace('\r\n', '\n').replace('\r', '\n').replace('\n', '<br>\n')
+    # Разбиваем текст описания на отдельные абзацы и оборачиваем каждый в чистый тег <p>
+    # Это обеспечивает автоматические пустые строки-отступы после названия, между абзацами, перед подписью автора и хештегами при копировании
+    paragraphs = [p.strip() for p in re.split(r'\r?\n+', description) if p.strip()]
+    if paragraphs:
+        description_html = "\n        ".join(f"<p>{html.escape(p)}</p>" for p in paragraphs)
+    else:
+        description_html = f"<p>{html.escape(description)}</p>"
 
     html_body = f"""
     <html>
     <head>
         <meta charset="utf-8">
     </head>
-    <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #212529; background-color: #ffffff; padding: 15px;">
-        <h2 style="margin-top: 0; color: #0d6efd;">{safe_title} <span style="font-size: 0.8em; color: #6c757d;">({safe_age_rating})</span></h2>
-        
-        <div style="margin: 15px 0; padding: 15px; background-color: #f8f9fa; border-left: 4px solid #0d6efd; border-radius: 4px; white-space: pre-wrap; font-size: 15px; line-height: 1.6; word-break: break-word;">{formatted_desc}</div>
-        
-        <p style="margin: 8px 0; font-size: 14px;"><strong>Автор / библиотека:</strong> {safe_author}</p>
-        <p style="margin: 8px 0; font-size: 14px; color: #0d6efd;"><strong>Хештеги:</strong> {safe_hashtags}</p>
-        
-        <div style="border: 1px solid #dee2e6; border-radius: 6px; padding: 15px; margin-top: 20px; background-color: #ffffff;">
-            <p style="margin-top: 0;"><strong>Ссылка на папку:</strong> <a href="{folder_link}" style="color: #0d6efd;">{folder_link}</a></p>
+    <body>
+        <p><strong>{safe_title} ({safe_age_rating})</strong></p>
+        {description_html}
+        <p>{safe_author}</p>
+        <p>{safe_hashtags}</p>
+        <div style="border: 1px solid #ddd; padding: 10px; margin-top: 20px;">
+            <p>Ссылка на папку {safe_title} ({safe_age_rating}): <a href="{folder_link}">{folder_link}</a></p>
+            <p>Ссылки на загруженные файлы:</p>
+            <ul>
     """
-    if file_urls:
-        html_body += "<p style='margin-bottom: 5px;'><strong>Ссылки на загруженные файлы:</strong></p><ul style='margin-top: 5px;'>"
-        for url in file_urls:
-            file_link = url.replace("https://webdav.cloud.mail.ru/", "https://cloud.mail.ru/home/")
-            html_body += f"<li><a href='{file_link}' style='color: #0d6efd;'>{file_link}</a></li>"
-        html_body += "</ul>"
-    else:
-        html_body += "<p style='color: #6c757d;'><em>Файлы не прикреплены.</em></p>"
+    for url in file_urls:
+        file_link = url.replace("https://webdav.cloud.mail.ru/", "https://cloud.mail.ru/home/")
+        html_body += f"<li><a href='{file_link}'>{file_link}</a></li>"
+    html_body += "</ul>"
 
     if social_media:
-        html_body += "<p style='margin-bottom: 5px;'><strong>Где публиковать новость:</strong></p><ul style='margin-top: 5px;'>"
+        html_body += "<p>Где публиковать новость:</p><ul>"
         for media in social_media:
             html_body += f"<li>{html.escape(media)}</li>"
         html_body += "</ul>"
 
-    if buttons_html:
-        html_body += f"<div style='margin-top: 15px;'>{buttons_html}</div>"
-
-    html_body += "</div></body></html>"
+    html_body += f"<p>{buttons_html}</p></div></body></html>"
 
     msg.attach(MIMEText(html_body, 'html', 'utf-8'))
 

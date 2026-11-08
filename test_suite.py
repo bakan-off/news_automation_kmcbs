@@ -111,12 +111,12 @@ class NewsAutomationTestCase(unittest.TestCase):
                 'author': 'ЦБ им. Шесталова'
             })
 
-            # Отправляем новость с файлом
+            # Отправляем новость с файлом и слитными хештегами
             data = {
                 'title': 'Выставка «Книги & Люди»',
                 'age_rating': '6+',
                 'description': test_multiline_text,
-                'hashtags': '#КМЦБС #Вбиблиотеке',
+                'hashtags': '#Россияобъединяет#Культурадляшкольников#ДетиРулят86',
                 'social_media': ['Вконтакте', 'Telegram'],
                 'files': (io.BytesIO(b"dummy image data"), "Фото_мероприятия.jpg")
             }
@@ -142,15 +142,21 @@ class NewsAutomationTestCase(unittest.TestCase):
             self.assertNotIn("<2026>", html_part, "Символы < и > должны быть экранированы как &lt; и &gt;")
             self.assertIn("&lt;2026&gt;", html_part)
 
-            # Проверяем 2: переводы строк сохранены в виде <br>
-            self.assertIn("Уважаемые читатели!<br>", html_part)
-            self.assertIn("- Встреча с писателем;<br>", html_part)
-            self.assertIn("- Викторина для школьников;<br>", html_part)
+            # Проверяем 2: каждый абзац обернут в отдельный чистый тег <p>...</p>
+            self.assertIn("<p><strong>Выставка «Книги &amp; Люди» (6+)</strong></p>", html_part)
+            self.assertIn("<p>Уважаемые читатели!</p>", html_part)
+            self.assertIn("<p>Приглашаем вас на выставку «Книги &amp; Люди &lt;2026&gt;».</p>", html_part)
+            self.assertIn("<p>- Встреча с писателем;</p>", html_part)
+            self.assertIn("<p>ЦБ им. Шесталова</p>", html_part)
 
-            # Проверяем 3: блок имеет стиль white-space: pre-wrap для сохранения структуры в почтовиках
-            self.assertIn("white-space: pre-wrap", html_part)
+            # Проверяем 3: нет лишних надписей "Автор / библиотека:" и "Хештеги:", мешающих копированию
+            self.assertNotIn("Автор / библиотека:", html_part)
+            self.assertNotIn("Хештеги:", html_part)
 
-            # Проверяем 4: загрузка файла в WebDAV была вызвана с безопасным именем
+            # Проверяем 4: слитные хештеги автоматически разделены пробелами
+            self.assertIn("<p>#Россияобъединяет #Культурадляшкольников #ДетиРулят86</p>", html_part)
+
+            # Проверяем 5: загрузка файла в WebDAV была вызвана с безопасным именем
             self.assertTrue(mock_webdav.upload_sync.called)
             remote_path_arg = mock_webdav.upload_sync.call_args[1]['remote_path']
             self.assertTrue(remote_path_arg.endswith("Фото_мероприятия.jpg"))

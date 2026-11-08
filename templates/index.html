@@ -226,7 +226,7 @@
                       <button type="button" class="btn btn-primary btn-lg" onclick="document.getElementById('file-upload').click();">Выбрать файлы</button>
                       <div id="filedrag" class="mb-3">Или перетащите их сюда</div>
                   </div>
-                  <input id="file-upload" type="file" class="form-control" name="files" multiple style="display: none;" onchange="updateFileList();"/>
+                  <input id="file-upload" type="file" class="form-control" name="files" multiple style="display: none;"/>
                   <ul id="file-list" class="list-group mb-3"></ul>
                   <div class="mb-3">
                       <label for="social_media" class="form-label">Где публиковать новость:</label>
@@ -435,6 +435,7 @@
 
             // Кнопка удаления
             const removeButton = document.createElement('button');
+            removeButton.type = 'button';
             removeButton.textContent = 'Удалить';
             removeButton.classList.add('btn', 'btn-danger', 'btn-sm');
             removeButton.onclick = () => {
@@ -494,13 +495,17 @@
     const hashtagsField = document.getElementById('hashtags');
     const hashtagButtons = document.querySelectorAll('.hashtag-button');
     if (hashtagsField) {
+        const normalizeHashtags = (str) => {
+            return str.replace(/([^\s])#/g, '$1 #').replace(/ +/g, ' ');
+        };
+
         const validateHashtags = () => {
             const val = hashtagsField.value.trim();
             if (!val) {
                 hashtagsField.setCustomValidity('');
                 return;
             }
-            const regex = /^(#(?<tag>[A-Za-zА-Яа-я0-9_]+)\s*){1,15}$/;
+            const regex = /^(#(?<tag>[A-Za-zА-Яа-яЁё0-9_]+)\s*){1,15}$/;
             if (regex.test(val)) {
                 hashtagsField.setCustomValidity('');
             } else {
@@ -509,7 +514,8 @@
         };
 
         const syncHashtagButtons = () => {
-            const currentTokens = hashtagsField.value.trim().split(/\s+/).filter(Boolean);
+            const normalized = normalizeHashtags(hashtagsField.value.trim());
+            const currentTokens = normalized.split(/\s+/).filter(Boolean);
             hashtagButtons.forEach(button => {
                 const hashtag = button.getAttribute('data-hashtag');
                 if (currentTokens.includes(hashtag)) {
@@ -525,8 +531,17 @@
             syncHashtagButtons();
         });
 
+        hashtagsField.addEventListener('blur', () => {
+            if (hashtagsField.value) {
+                hashtagsField.value = normalizeHashtags(hashtagsField.value).trim();
+                validateHashtags();
+                syncHashtagButtons();
+            }
+        });
+
         hashtagsField.addEventListener('paste', () => {
             setTimeout(() => {
+                hashtagsField.value = normalizeHashtags(hashtagsField.value).trim();
                 validateHashtags();
                 syncHashtagButtons();
             }, 0);
@@ -536,7 +551,7 @@
         hashtagButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const hashtag = button.getAttribute('data-hashtag');
-                let currentTokens = hashtagsField.value.trim().split(/\s+/).filter(Boolean);
+                let currentTokens = normalizeHashtags(hashtagsField.value.trim()).split(/\s+/).filter(Boolean);
 
                 const index = currentTokens.indexOf(hashtag);
                 if (index === -1) {
